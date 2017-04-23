@@ -1,0 +1,15 @@
+package net.kerfuffle.PatientClient;
+
+import net.kerfuffle.Utilities.Network.Client;
+
+public class Game {
+
+	private Client client;
+	
+	
+	public Game(Client client)
+	{
+		this.client = client;
+	}
+	
+}
