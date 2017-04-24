@@ -1,0 +1,43 @@
+package net.kerfuffle.RaspiServer;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalInput;
+import com.pi4j.io.gpio.Pin;
+import com.pi4j.io.gpio.PinPullResistance;
+import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+
+public class Finger {
+
+	private final GpioController gpio;
+	private final GpioPinDigitalInput vibe;
+
+	private boolean triggered = false;
+	
+	public Finger (Pin pin)
+	{
+		gpio = GpioFactory.getInstance();
+		vibe = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
+		vibe.setShutdownOptions(true);
+
+		vibe.addListener(new GpioPinListenerDigital() {
+
+			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) 
+			{
+				triggered = true;
+			}
+
+		});
+
+	}
+
+	public boolean isTriggered()
+	{
+		boolean temp = triggered;
+		triggered = false;
+		return temp;
+	}
+
+}

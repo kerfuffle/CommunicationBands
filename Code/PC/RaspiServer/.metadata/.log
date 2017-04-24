@@ -43,3 +43,72 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
 	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
 	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 4 2017-04-24 09:37:42.518
+!MESSAGE Full project indexing required:
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\junit.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-core-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-core-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-core.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-device-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-device-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-device.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-example-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-example-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-example.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-gpio-extension-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-gpio-extension-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-gpio-extension.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-service-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-service-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\RaspiServer\RaspiServer\res\pi4j-service.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:169)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.suggestRebuild(ProjectTypesIndex.java:444)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.rebuildIndex(TypesIndexService.java:120)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:57)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:63)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.elementChanged(TypesIndexService.java:49)
+	at org.eclipse.jdt.internal.core.DeltaProcessor$3.run(DeltaProcessor.java:1662)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.notifyListeners(DeltaProcessor.java:1652)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.firePostChangeDelta(DeltaProcessor.java:1486)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.fire(DeltaProcessor.java:1462)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.resourceChanged(DeltaProcessor.java:2074)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.resourceChanged(DeltaProcessingState.java:477)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2253)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5521)
+	at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:105)
+	at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter$1.run(WorkbenchRunnableAdapter.java:118)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.recommenders.rcp 4 18 2017-04-24 12:29:03.210
+!MESSAGE Failed to resolve selection in ‘=RaspiServer/src<net.kerfuffle.RaspiServer{Finger.java’ at offset 1,075.
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromTypeRootInEditor(JavaElementSelections.java:164)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromEditor(JavaElementSelections.java:119)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromEditor(JavaElementSelections.java:102)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService.handleSelectionInEditor(JavaElementSelectionService.java:108)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService.access$1(JavaElementSelectionService.java:105)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService$1.run(JavaElementSelectionService.java:82)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
