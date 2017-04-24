@@ -1,0 +1,21 @@
+package net.kerfuffle.RaspiServer;
+
+public class Game implements Runnable{
+
+	private Thread t;
+	
+	public Game ()
+	{
+		
+	}
+	
+	public void start()
+	{
+		t = new Thread(this, "RaspiGame");
+	}
+	
+	public void run()
+	{
+		
+	}
+}

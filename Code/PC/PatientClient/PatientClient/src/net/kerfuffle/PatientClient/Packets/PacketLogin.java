@@ -5,8 +5,8 @@ import net.kerfuffle.Utilities.Network.Packet;
 
 public class PacketLogin extends Packet{
 	
-	public PacketLogin(String username)
+	public PacketLogin()
 	{
-		data = (Global.LOGIN + "," + username + ",");
+		data = (Global.LOGIN + ",");
 	}
 }
