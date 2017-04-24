@@ -6,6 +6,8 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
+import net.kerfuffle.PatientClient.Packets.PacketCommand;
+import net.kerfuffle.PatientClient.Packets.PacketDisconnect;
 import net.kerfuffle.Utilities.Network.Client;
 import net.kerfuffle.Utilities.Network.MyCode;
 import net.kerfuffle.Utilities.Network.Packet;
@@ -24,32 +26,43 @@ public class Main {
 
 		Global.Type = Global.CLIENT;
 		
+		game = new Game();
+		
 		client.setMyCode(new MyCode()
 		{
 			public void run(Packet packet)
 			{
-				if (packet.getId() == Global.LEFT)
+				if (packet.getId() == Global.DISCONNECT)
 				{
-					
+					PacketDisconnect p = new PacketDisconnect(packet.getData());
+					System.out.println(p.getMessage());
 				}
-				if (packet.getId() == Global.RIGHT)
+				if (packet.getId() == Global.COMMAND)
 				{
+					PacketCommand p = new PacketCommand(packet.getData());
+					int type = p.getType();
 					
-				}
-				if (packet.getId() == Global.SENTENCE_ENTER)
-				{
-					
-				}
-				if (packet.getId() == Global.LETTER_ENTER)
-				{
-					
+					if (type == Global.LEFT)
+					{
+						game.goLeft();
+					}
+					if (type == Global.RIGHT)
+					{
+						game.goRight();
+					}
+					if (type == Global.SENTENCE_ENTER)
+					{
+						game.sentenceEnter();
+					}
+					if (type == Global.LETTER_ENTER)
+					{
+						game.letterEnter();
+					}
 				}
 			}
 		});
 
 		client.start();
-
-		game = new Game(client);
 
 
 	}

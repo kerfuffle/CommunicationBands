@@ -4,10 +4,12 @@ public class Global {
 
 	public static final int LOGIN = 0,
 			DISCONNECT = 1,
-			LEFT = 2,
-			RIGHT = 3,
-			LETTER_ENTER = 4,
-			SENTENCE_ENTER = 5;
+			COMMAND = 2;
+			
+	public static final int LEFT = 0,
+			RIGHT = 1,
+			LETTER_ENTER = 2,
+			SENTENCE_ENTER = 3;
 			
 	
 //	public static final int LOGIN = 0,
