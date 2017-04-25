@@ -1,0 +1,5 @@
+package net.kerfuffle.RaspiServer.Packets;
+
+public class PacketCurrentSentence {
+
+}
