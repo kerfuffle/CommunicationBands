@@ -5,9 +5,6 @@ import static com.pi4j.io.gpio.RaspiPin.*;
 import com.pi4j.io.gpio.Pin;
 
 import net.kerfuffle.RaspiServer.Packets.PacketCommand;
-import net.kerfuffle.RaspiServer.Packets.PacketCurrentLetter;
-import net.kerfuffle.RaspiServer.Packets.PacketCurrentSentence;
-import net.kerfuffle.RaspiServer.Packets.PacketNewSentence;
 import net.kerfuffle.Utilities.Network.Server;
 import static net.kerfuffle.RaspiServer.Global.*;
 
@@ -28,9 +25,8 @@ public class FingerListener implements Runnable{
 	private final Pin pin[] = {GPIO_00, GPIO_01, GPIO_02, GPIO_03, GPIO_04, GPIO_05, GPIO_06, GPIO_07, GPIO_08, GPIO_09};
 	private final int fingerType[] = {LEFT_PINKY, LEFT_RING, LEFT_MIDDLE, LEFT_POINTER, LEFT_THUMB, RIGHT_THUMB, RIGHT_POINTER, RIGHT_RING, RIGHT_PINKY};
 
+	//private char letterConfig[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'};
 	private char currentLetter;
-	private StringBuilder currentSentence = new StringBuilder();
-	private ArrayList<String> history = new ArrayList<String>();
 	
 	public FingerListener (Server server, InetAddress patientIp, int patientPort)
 	{
@@ -72,82 +68,26 @@ public class FingerListener implements Runnable{
 				if (f.getFingerType() == LEFT_POINTER)	
 				{
 					p = new PacketCommand(LEFT);
-					currentLetter = incrementChar(currentLetter);
-					
-					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
 				}
 				if (f.getFingerType() == RIGHT_POINTER)
 				{
 					p = new PacketCommand(RIGHT);
-					currentLetter = decrementChar(currentLetter);
-					
-					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
 				}
 				if (f.getFingerType() == LEFT_THUMB)
 				{
 					p = new PacketCommand(BACKSPACE);
-					currentSentence.deleteCharAt(currentSentence.length()-1);
-					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
 				}
 				if (f.getFingerType() == RIGHT_THUMB)
 				{
 					p = new PacketCommand(LETTER_ENTER);
-					currentSentence.append(currentLetter);
-					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
 				}
 				if (f.getFingerType() == LEFT_PINKY)
 				{
 					p = new PacketCommand(CAPSLOCK);
-					currentLetter = Character.toUpperCase(currentLetter);
 				}
 				if (f.getFingerType() == RIGHT_PINKY)
 				{
 					p = new PacketCommand(SPACE);
-					currentSentence.append(' ');
-					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
 				}
 			}
 			else
@@ -155,19 +95,6 @@ public class FingerListener implements Runnable{
 				if (hasSentenceEnterCombo(triggered))
 				{
 					p = new PacketCommand(SENTENCE_ENTER);
-					history.add(currentSentence.toString());
-					
-					PacketNewSentence pcl = new PacketNewSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
-					
-					currentSentence.delete(0, currentSentence.length()-1);
 				}
 			}
 
@@ -187,10 +114,6 @@ public class FingerListener implements Runnable{
 	}
 
 
-	
-	
-	
-	
 	private char incrementChar(char c)
 	{
 		if (c == 'Z')
