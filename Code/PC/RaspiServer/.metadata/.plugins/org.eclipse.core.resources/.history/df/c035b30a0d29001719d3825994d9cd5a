@@ -14,9 +14,10 @@ public class FingerListener implements Runnable{
 	
 	private Server server;
 	
+	private LeftHand lh;
+	private RightHand rh;
 	private Finger finger[] = new Finger[10];
 	private final Pin pin[] = {GPIO_00, GPIO_01, GPIO_02, GPIO_03, GPIO_04, GPIO_05, GPIO_06, GPIO_07, GPIO_08, GPIO_09};
-	private final int fingerType[] = {LEFT_PINKY, LEFT_RING, LEFT_MIDDLE, LEFT_POINTER, LEFT_THUMB, RIGHT_THUMB, RIGHT_POINTER, RIGHT_RING, RIGHT_PINKY};
 	
 	public FingerListener (Server server)
 	{

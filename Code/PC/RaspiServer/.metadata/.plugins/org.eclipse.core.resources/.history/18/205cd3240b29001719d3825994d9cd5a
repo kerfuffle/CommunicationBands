@@ -13,12 +13,14 @@ public class Finger {
 
 	private final GpioController gpio;
 	private final GpioPinDigitalInput vibe;
-	private int fingerType = -1;
+
+	private int id = -1;
+	
 	private boolean triggered = false;
 	
-	public Finger (Pin pin, int fingerType)
+	public Finger (Pin pin, int id)
 	{
-		this.fingerType=fingerType;
+		this.id=id;
 		
 		gpio = GpioFactory.getInstance();
 		vibe = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
@@ -42,4 +44,9 @@ public class Finger {
 		return temp;
 	}
 
+	public int getId()
+	{
+		return id;
+	}
+	
 }
