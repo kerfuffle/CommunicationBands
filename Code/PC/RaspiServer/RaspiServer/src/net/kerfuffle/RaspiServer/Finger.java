@@ -42,4 +42,9 @@ public class Finger {
 		return temp;
 	}
 
+	public int getFingerType()
+	{
+		return fingerType;
+	}
+	
 }

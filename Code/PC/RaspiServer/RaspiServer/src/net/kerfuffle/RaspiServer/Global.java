@@ -9,7 +9,9 @@ public class Global {
 	public static final int LEFT = 0,
 			RIGHT = 1,
 			LETTER_ENTER = 2,
-			SENTENCE_ENTER = 3;
+			SENTENCE_ENTER = 3,
+			SPACE = 4,
+			BACKSPACE = 5;
 
 	public static final int LEFT_PINKY = 0,
 			LEFT_RING = 1,

@@ -1,6 +1,8 @@
 package net.kerfuffle.RaspiServer;
 
+import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
@@ -14,11 +16,20 @@ import net.kerfuffle.Utilities.Network.User;
 public class Main {
 
 	private Server server;
+	private FingerListener fingerListener;
+	
+	private InetAddress patientIp;
+	private int patientPort;
 
-	public void run() throws SocketException
+	public void run() throws SocketException, UnknownHostException
 	{
-		int port = Integer.parseInt(JOptionPane.showInputDialog("Port"));
+		int port = Integer.parseInt(JOptionPane.showInputDialog("Port to host on."));
+		String patient = JOptionPane.showInputDialog("Patient IP:Port");
 
+		String sp[] = patient.split(":");
+		patientIp = InetAddress.getByName(sp[0]);
+		patientPort = Integer.parseInt(sp[1]);
+		
 		server = new Server("RaspiServer", port);
 
 		server.setMyCode(new MyCode()
@@ -38,11 +49,14 @@ public class Main {
 				}
 			}
 		});
+		
+		fingerListener = new FingerListener(server, patientIp, patientPort);
+		fingerListener.start();
 	}
 
 
 
-	public static void main (String args[]) throws SocketException
+	public static void main (String args[]) throws SocketException, UnknownHostException
 	{
 		new Main().run();
 	}
