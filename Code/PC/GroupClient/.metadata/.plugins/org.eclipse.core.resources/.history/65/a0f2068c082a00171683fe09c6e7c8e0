@@ -1,0 +1,31 @@
+package net.kerfuffle.GroupClient;
+
+import java.util.ArrayList;
+
+public class Game {
+
+	private char currentLetter;
+	private String currentSentence;
+	private ArrayList <String> history = new ArrayList<String>();
+	
+	public Game()
+	{
+		
+	}
+	
+	
+	
+	public void setCurrentLetter(char c)
+	{
+		currentLetter = c;
+	}
+	public void addNewSentence(String str)
+	{
+		history.add(str);
+	}
+	public void setCurrentSentence(String str)
+	{
+		currentSentence = str;
+	}
+	
+}

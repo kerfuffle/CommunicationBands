@@ -1,0 +1,20 @@
+package net.kerfuffle.GroupClient.Packets;
+
+import net.kerfuffle.GroupClient.Global;
+import net.kerfuffle.Utilities.Network.Packet;
+
+public class PacketDisconnect extends Packet{
+
+	public PacketDisconnect(String data)
+	{
+		super (data, Global.DISCONNECT);
+		
+		if ()
+	}
+	
+	public PacketDisconnect (String data)
+	{
+		
+	}
+	
+}
