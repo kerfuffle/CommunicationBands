@@ -1,0 +1,60 @@
+package net.kerfuffle.PatientClient;
+
+import java.awt.FontFormatException;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import net.kerfuffle.Utilities.GUI.DavisGUI;
+import net.kerfuffle.Utilities.GUI.Text.Font;
+
+public class Game extends DavisGUI{
+
+	private LetterSet letterSet;
+	private Font font;
+
+	public Game()
+	{
+		super("PatientClient");
+	}
+
+	public void childInit()
+	{
+
+		try 
+		{
+			font = new Font(new FileInputStream("res/Helvetica.ttf"), 72);
+		} 
+		catch (FontFormatException | IOException ex) 
+		{
+			font = new Font();
+		}
+
+		letterSet = new LetterSet(font, 5, -400, -300);
+		
+		
+	}
+	public void childLoop()
+	{
+
+	}
+
+
+
+
+	public void goLeft()
+	{
+
+	}
+	public void goRight()
+	{
+
+	}
+	public void sentenceEnter()
+	{
+
+	}
+	public void letterEnter()
+	{
+
+	}
+}

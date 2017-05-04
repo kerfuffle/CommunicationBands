@@ -2,10 +2,12 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Client"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="java.net.InetAddress"/>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.MyCode"/>
-<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Global"/>
-<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketCommand"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketDisconnect"/>
+<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Global"/>
+<fullyQualifiedTypeName name="java.net.InetAddress"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
+<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketPatientLogin"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
 </qualifiedTypeNameHistroy>

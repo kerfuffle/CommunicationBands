@@ -15,6 +15,10 @@ import net.kerfuffle.Utilities.Network.User;
 
 public class Main {
 
+	private FingerSimulator fingerSimulator;
+	
+	
+	
 	private Server server;
 	private FingerListener fingerListener;
 	
@@ -24,11 +28,6 @@ public class Main {
 	public void run() throws SocketException, UnknownHostException
 	{
 		int port = Integer.parseInt(JOptionPane.showInputDialog("Port to host on."));
-		String patient = JOptionPane.showInputDialog("Patient IP:Port");
-
-		String sp[] = patient.split(":");
-		patientIp = InetAddress.getByName(sp[0]);
-		patientPort = Integer.parseInt(sp[1]);
 		
 		server = new Server("RaspiServer", port);
 
@@ -42,6 +41,14 @@ public class Main {
 					User u = new User(null, packet.getIp(), packet.getPort());
 					server.addUser(u);
 				}
+				if (packet.getId() == Global.PATIENT_LOGIN)
+				{
+					patientIp = packet.getIp();
+					patientPort = packet.getPort();
+					
+					fingerSimulator = new FingerSimulator(server, patientIp, patientPort);
+					fingerSimulator.start();
+				}
 				if (packet.getId() == Global.DISCONNECT)
 				{
 					PacketDisconnect p = new PacketDisconnect(packet.getData(), packet.getIp(), packet.getPort());
@@ -50,8 +57,10 @@ public class Main {
 			}
 		});
 		
-		fingerListener = new FingerListener(server, patientIp, patientPort);
-		fingerListener.start();
+		server.start();
+		
+		//fingerListener = new FingerListener(server, patientIp, patientPort);
+		//fingerListener.start();
 	}
 
 

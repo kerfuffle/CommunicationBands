@@ -1,0 +1,14 @@
+package net.kerfuffle.PatientClient.Packets;
+
+import java.net.InetAddress;
+
+import net.kerfuffle.PatientClient.Global;
+
+public class PacketPatientLogin {
+
+	public PacketPatientLogin(String data, InetAddress ip, int port)
+	{
+		super (data, Global.PATIENT_LOGIN, ip, port);
+	}
+	
+}

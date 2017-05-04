@@ -1,5 +1,6 @@
 package net.kerfuffle.PatientClient;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -8,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import net.kerfuffle.PatientClient.Packets.PacketCommand;
 import net.kerfuffle.PatientClient.Packets.PacketDisconnect;
+import net.kerfuffle.PatientClient.Packets.PacketPatientLogin;
 import net.kerfuffle.Utilities.Network.Client;
 import net.kerfuffle.Utilities.Network.MyCode;
 import net.kerfuffle.Utilities.Network.Packet;
@@ -25,6 +27,18 @@ public class Main {
 		client = new Client("Patient Client", InetAddress.getByName(sp[0]), Integer.parseInt(sp[1]));
 
 		Global.Type = Global.CLIENT;
+		
+		////////////
+		PacketPatientLogin login = new PacketPatientLogin();
+		try
+		{
+			client.sendPacket(login);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		////////////
 		
 		game = new Game();
 		
@@ -58,12 +72,16 @@ public class Main {
 					{
 						game.letterEnter();
 					}
+					if (type == Global.CAPSLOCK)
+					{
+						game.capslock();
+					}
 				}
 			}
 		});
 
 		client.start();
-
+		game.run();
 
 	}
 

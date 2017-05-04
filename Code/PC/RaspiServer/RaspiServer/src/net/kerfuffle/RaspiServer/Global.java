@@ -7,7 +7,8 @@ public class Global {
 			COMMAND = 2,
 			CURRENT_LETTER = 3,
 			CURRENT_SENTENCE = 4,
-			NEW_SENTENCE = 5;
+			NEW_SENTENCE = 5,
+			PATIENT_LOGIN = 6;
 
 	public static final int LEFT = 0,
 			RIGHT = 1,
@@ -29,8 +30,7 @@ public class Global {
 			RIGHT_THUMB = 9;
 
 
-
-			public static final int CLIENT = 0, SERVER = 1;
+	public static final int CLIENT = 0, SERVER = 1;
 
 	public static int Type = -1;
 

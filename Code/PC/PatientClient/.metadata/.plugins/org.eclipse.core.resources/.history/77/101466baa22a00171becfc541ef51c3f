@@ -1,0 +1,39 @@
+package net.kerfuffle.PatientClient;
+
+import net.kerfuffle.Utilities.GUI.Text.Font;
+
+public class LetterSet {
+
+	public static final int LOWER = 0, UPPER = 1;
+	
+	public static char[] lower = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	public static char[] uppper = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+	
+	int set = LOWER;
+	
+	public Letter currentSet[] = new Letter[26];
+	
+	private Font font;
+	private float startX, startY;
+	
+	public LetterSet(Font font, float startX, float startY)
+	{
+		this.font = font;
+	}
+	
+	
+	public void setSet(int set)
+	{
+		this.set=set;
+		
+		if (set == LOWER)
+		{
+			currentSet = new Letter[26];
+			for (int i = 0; i < lower.length; i++)
+			{
+				currentSet[i] = new Letter(lower[i], font, )
+			}
+		}
+	}
+
+}

@@ -172,3 +172,186 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-04-26 09:44:34.302 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-04-26 09:45:10.832
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\12664.WHS-12TH-452'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 4 2017-04-26 12:50:19.950
+!MESSAGE Full project indexing required:
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\charsets.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\access-bridge-64.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\cldrdata.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\dnsns.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\jaccess.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\jfxrt.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\localedata.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\nashorn.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\sunec.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\sunjce_provider.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\sunmscapi.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\sunpkcs11.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\ext\zipfs.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\jce.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\jfr.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\jsse.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\resources.jar
+  [+] C:\Program Files\Java\jre1.8.0_121\lib\rt.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\PNGDecoder.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-assimp-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-assimp-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-assimp-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-assimp.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-bgfx-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-bgfx-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-bgfx-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-bgfx.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-egl-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-egl-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-egl.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-glfw-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-glfw-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-glfw-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-glfw.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jawt-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jawt-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jawt.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jemalloc-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jemalloc-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jemalloc-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-jemalloc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-lmdb-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-lmdb-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-lmdb-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-lmdb.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nanovg-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nanovg-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nanovg-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nanovg.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nfd-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nfd-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nfd-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nfd.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nuklear-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nuklear-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nuklear-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-nuklear.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-openal-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-openal-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-openal-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-openal.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opencl-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opencl-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opencl.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengl-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengl-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengl-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengl.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengles-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengles-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengles-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-opengles.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-ovr-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-ovr-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-ovr-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-ovr.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-par-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-par-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-par-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-par.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-sse-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-sse-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-sse-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-sse.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-stb-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-stb-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-stb-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-stb.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-tinyfd-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-tinyfd-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-tinyfd-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-tinyfd.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-vulkan-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-vulkan-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-vulkan.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-xxhash-javadoc.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-xxhash-natives-windows.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-xxhash-sources.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl-xxhash.jar
+  [+] C:\Users\12664.WHS-12TH-452\Documents\GitHub\CommunicationBands\Code\PC\PatientClient\PatientClient\libs\lwjgl.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:169)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.startUp(ProjectTypesIndex.java:122)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2017-04-26 13:03:29.547
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [LetterSet(Font) [in LetterSet [in [Working copy] LetterSet.java [in net.kerfuffle.PatientClient [in src [in PatientClient]]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:556)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:590)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:316)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:302)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:218)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:291)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:658)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:534)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:717)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:635)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:627)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:164)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:165)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2017-04-26 13:03:29.547
+!MESSAGE LetterSet(Font) [in LetterSet [in [Working copy] LetterSet.java [in net.kerfuffle.PatientClient [in src [in PatientClient]]]]] does not exist
+!SESSION 2017-04-28 19:43:26.334 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-04-28 19:44:25.800
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-04-28 19:44:44.968
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\12664.WHS-12TH-452'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-05-03 08:40:33.212 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-05-03 08:41:45.395
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\12664.WHS-12TH-452'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

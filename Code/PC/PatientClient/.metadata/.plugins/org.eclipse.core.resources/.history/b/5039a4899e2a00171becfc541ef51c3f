@@ -1,0 +1,50 @@
+package net.kerfuffle.PatientClient;
+
+import net.kerfuffle.Utilities.GUI.DavisGUI;
+import net.kerfuffle.Utilities.Network.Client;
+
+public class Game extends DavisGUI implements Runnable{
+	
+	private Client client;
+	private Thread t;
+	private boolean running = false;
+	
+	public Game(Client client)
+	{
+		this.client = client;
+	}
+	
+	public void start()
+	{
+		running = true;
+		t = new Thread();
+		t.start();
+	}
+	
+	public void run()
+	{
+		while (running)
+		{
+			
+		}
+	}
+	
+	
+	
+	public void goLeft()
+	{
+		
+	}
+	public void goRight()
+	{
+		
+	}
+	public void sentenceEnter()
+	{
+		
+	}
+	public void letterEnter()
+	{
+		
+	}
+}

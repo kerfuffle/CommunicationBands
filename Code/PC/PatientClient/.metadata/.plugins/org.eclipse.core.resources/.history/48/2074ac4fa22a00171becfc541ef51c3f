@@ -1,0 +1,39 @@
+package net.kerfuffle.PatientClient;
+
+import net.kerfuffle.Utilities.GUI.DavisGUI;
+import net.kerfuffle.Utilities.Network.Client;
+
+public class Game extends DavisGUI{
+	
+	public Game()
+	{
+		super("PatientClient");
+	}
+	
+	public void childInit()
+	{
+		
+	}
+	public void childLoop()
+	{
+		
+	}
+	
+	
+	public void goLeft()
+	{
+		
+	}
+	public void goRight()
+	{
+		
+	}
+	public void sentenceEnter()
+	{
+		
+	}
+	public void letterEnter()
+	{
+		
+	}
+}

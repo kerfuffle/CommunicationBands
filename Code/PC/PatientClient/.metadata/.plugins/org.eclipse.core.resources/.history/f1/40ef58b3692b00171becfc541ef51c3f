@@ -1,0 +1,43 @@
+package net.kerfuffle.PatientClient;
+
+import net.kerfuffle.Utilities.GUI.DavisGUI;
+
+public class Game extends DavisGUI{
+	
+	private LetterSet letterSet;
+	private Font font;
+	
+	public Game()
+	{
+		super("PatientClient");
+	}
+	
+	public void childInit()
+	{
+		letterSet = new LetterSet(font, 5, -400, -300);
+	}
+	public void childLoop()
+	{
+		
+	}
+	
+	
+	
+	
+	public void goLeft()
+	{
+		
+	}
+	public void goRight()
+	{
+		
+	}
+	public void sentenceEnter()
+	{
+		
+	}
+	public void letterEnter()
+	{
+		
+	}
+}
