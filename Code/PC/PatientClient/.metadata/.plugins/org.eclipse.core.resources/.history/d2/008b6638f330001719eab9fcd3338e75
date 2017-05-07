@@ -36,7 +36,7 @@ public class LetterSet {
 	{
 		int index = amountVisible/2;
 		Letter current = currentSet[index];
-		Letter drawing = new Letter(current.getLetter(), letter_select_font, 0-font.getWidth(String.valueOf(current.getLetter()))/2, current.y + 150);
+		Letter drawing = new Letter(current.getLetter(), letter_select_font, current.x, current.y);
 		drawing.draw();
 	}
 	

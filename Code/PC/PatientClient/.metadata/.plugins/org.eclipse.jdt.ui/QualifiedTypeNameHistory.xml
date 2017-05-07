@@ -10,4 +10,5 @@
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketPatientLogin"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.GUI.Quad"/>
 </qualifiedTypeNameHistroy>
