@@ -76,14 +76,6 @@ public class Main {
 					{
 						game.capslock();
 					}
-					if (type == Global.SPACE)
-					{
-						game.space();
-					}
-					if (type == Global.BACKSPACE)
-					{
-						game.backspace();
-					}
 				}
 			}
 		});

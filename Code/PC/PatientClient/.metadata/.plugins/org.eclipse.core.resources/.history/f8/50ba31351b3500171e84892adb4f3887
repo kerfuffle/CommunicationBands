@@ -32,13 +32,6 @@ public class LetterSet {
 		setSet(LOWER);
 	}
 	
-	public char getCurrentLetter()
-	{
-		int index = amountVisible/2;
-		Letter current = currentSet[index];
-		return current.getLetter();
-	}
-	
 	private void drawCurrentLetter()
 	{
 		int index = amountVisible/2;

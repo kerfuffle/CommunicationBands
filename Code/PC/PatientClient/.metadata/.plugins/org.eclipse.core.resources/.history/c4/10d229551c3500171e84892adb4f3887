@@ -103,10 +103,6 @@ public class Game extends DavisGUI{
 			letterSet.setSet(LetterSet.LOWER);
 		}
 	}
-	public void space()
-	{
-		wordSet.addSpace();
-	}
 	public void backspace()
 	{
 		wordSet.removeLastLetter();

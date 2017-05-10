@@ -13,11 +13,7 @@ import net.kerfuffle.Utilities.GUI.Text.Font;
 public class Game extends DavisGUI{
 
 	private LetterSet letterSet;
-	private WordSet wordSet;
-	private SentenceHistory sentenceHistory;
-	private Font letter_font, letter_select_font, word_font;
-	
-	private boolean caps = false;
+	private Font font, letter_select_font;
 	
 	private Triangle leftTri;
 	private Triangle rightTri;
@@ -36,18 +32,15 @@ public class Game extends DavisGUI{
 		
 		try 
 		{
-			letter_font = new Font(new FileInputStream("res/Helvetica.ttf"), 72);
+			font = new Font(new FileInputStream("res/Helvetica.ttf"), 72);
 			letter_select_font = new Font(new FileInputStream("res/Helvetica.ttf"), 92);
-			word_font = new Font(new FileInputStream("res/Helvetica.ttf"), 56);
 		} 
 		catch (FontFormatException | IOException ex) 
 		{
-			letter_font = new Font();
+			font = new Font();
 		}
 
-		letterSet = new LetterSet(letter_font, letter_select_font, 9, -500, 500, -300);
-		wordSet = new WordSet(word_font);
-		sentenceHistory = new SentenceHistory(word_font);
+		letterSet = new LetterSet(font,letter_select_font, 5, -500, 500, -300);
 		
 		leftTri = new Triangle(-600, -300, new RGB(1,0,1));
 		leftTri.setRelativeVertex(0, 0, 0);
@@ -84,31 +77,14 @@ public class Game extends DavisGUI{
 	}
 	public void sentenceEnter()
 	{
-		sentenceHistory.addSentence(wordSet.toString());
-		wordSet.clear();
+
 	}
 	public void letterEnter()
 	{
-		wordSet.addLetter(letterSet.getCurrentLetter());
+
 	}
 	public void capslock()
 	{
-		caps = !caps;
-		if (caps)
-		{
-			letterSet.setSet(LetterSet.UPPER);
-		}
-		else
-		{
-			letterSet.setSet(LetterSet.LOWER);
-		}
-	}
-	public void space()
-	{
-		wordSet.addSpace();
-	}
-	public void backspace()
-	{
-		wordSet.removeLastLetter();
+		letterSet.setSet(LetterSet.UPPER);
 	}
 }
