@@ -1,0 +1,24 @@
+package net.kerfuffle.RaspiServer;
+
+import java.net.InetAddress;
+
+import net.kerfuffle.Utilities.Network.User;
+
+public class GroupUser extends User{
+
+	public static final int MIMIC = 0, HISTORY = 1;
+	
+	private int mode = MIMIC;
+	
+	public GroupUser(InetAddress ip, int port, int mode)
+	{
+		super(null, ip,port);
+		this.mode = mode;
+	}
+	
+	public int getMode()
+	{
+		return mode;
+	}
+	
+}

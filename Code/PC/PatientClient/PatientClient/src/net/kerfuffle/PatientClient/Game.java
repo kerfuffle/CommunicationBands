@@ -65,6 +65,8 @@ public class Game extends DavisGUI{
 	public void childLoop()
 	{
 		letterSet.draw();
+		wordSet.draw();
+		sentenceHistory.draw(windowWidth);
 		leftTri.draw();
 		rightTri.draw();
 	}

@@ -4,11 +4,9 @@ import net.kerfuffle.GroupClient.Global;
 import net.kerfuffle.Utilities.Network.Packet;
 
 public class PacketLogin extends Packet{
-
-	public PacketLogin()
-	{
-		super(null, Global.LOGIN);
-		data = id + ",";
-	}
 	
+	public PacketLogin(int id)
+	{
+		data = (Global.LOGIN + "," + id + ",");
+	}
 }

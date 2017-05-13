@@ -1,6 +1,7 @@
 package net.kerfuffle.Utilities.Network;
 
 import static net.kerfuffle.Utilities.Network.Packet.*;
+import static net.kerfuffle.Utilities.Network.Packet.receivePacket;
 
 import java.io.IOException;
 import java.net.DatagramSocket;

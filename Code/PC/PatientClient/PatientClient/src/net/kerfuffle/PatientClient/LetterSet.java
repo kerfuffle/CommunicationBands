@@ -29,7 +29,7 @@ public class LetterSet {
 		this.y=y;
 		this.letter_select_font=letter_select_font;
 		
-		setSet(LOWER);
+		initSet();
 	}
 	
 	public char getCurrentLetter()
@@ -98,16 +98,23 @@ public class LetterSet {
 		return ret;
 	}
 	
+	private void initSet()
+	{
+		currentSet = new Letter[lower.length];
+		for (int i = 0; i < lower.length; i++)
+		{
+			currentSet[i] = new Letter(lower[i], font, (leftBoundX+font.getWidth("g")) + (i * spaceBetween()), y);
+		}
+	}
 	public void setSet(int set)
 	{
 		this.set=set;
 		
 		if (set == LOWER)
 		{
-			currentSet = new Letter[lower.length];
-			for (int i = 0; i < lower.length; i++)
+			for (Letter l : currentSet)
 			{
-				currentSet[i] = new Letter(lower[i], font, (leftBoundX+font.getWidth("g")) + (i * spaceBetween()), y);
+				l.toLowerCase();
 			}
 		}
 		if (set == UPPER)

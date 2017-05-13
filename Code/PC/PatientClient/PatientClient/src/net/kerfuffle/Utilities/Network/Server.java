@@ -1,6 +1,7 @@
 package net.kerfuffle.Utilities.Network;
 
 import static net.kerfuffle.Utilities.Network.Packet.*;
+import static net.kerfuffle.Utilities.Network.Packet.receivePacket;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -104,6 +105,10 @@ public class Server implements Runnable{
 		return null;
 	}
 	
+	public void sendToUser(Packet p, InetAddress ip, int port) throws IOException
+	{
+		Packet.sendPacket(p, socket, ip, port);
+	}
 	public void sendToAllUsers(Packet p) throws IOException
 	{
 		for (User u : users)

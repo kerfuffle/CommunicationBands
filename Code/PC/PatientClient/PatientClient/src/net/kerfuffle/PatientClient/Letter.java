@@ -37,4 +37,8 @@ public class Letter {
 	{
 		letter = Character.toUpperCase(letter);
 	}
+	public void toLowerCase()
+	{
+		letter = Character.toLowerCase(letter);
+	}
 }

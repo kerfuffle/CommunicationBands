@@ -2,6 +2,7 @@ package net.kerfuffle.RaspiServer;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import net.kerfuffle.RaspiServer.Packets.PacketCommand;
@@ -17,11 +18,14 @@ public class FingerSimulator implements Runnable{
 	private int patientPort;
 	private Server server;
 	
-	public FingerSimulator (Server server, InetAddress patientIp, int patientPort)
+	private ArrayList<GroupUser> groupUsers;
+	
+	public FingerSimulator (Server server, InetAddress patientIp, int patientPort, ArrayList<GroupUser>groupUsers)
 	{
 		this.patientIp=patientIp;
 		this.patientPort=patientPort;
 		this.server = server;
+		this.groupUsers = groupUsers;
 	}
 	
 	public void start()
@@ -73,6 +77,13 @@ public class FingerSimulator implements Runnable{
 			{
 				try 
 				{
+					for (GroupUser gu : groupUsers)
+					{
+						if (gu.getMode() == Global.MIMIC)
+						{
+							server.sendToUser(p, gu.getIp(), gu.getPort());
+						}
+					}
 					server.sendToUser(p, patientIp, patientPort);
 				} 
 				catch (IOException e) 

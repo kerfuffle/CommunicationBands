@@ -8,7 +8,8 @@ public class Global {
 			CURRENT_LETTER = 3,
 			CURRENT_SENTENCE = 4,
 			NEW_SENTENCE = 5,
-			PATIENT_LOGIN = 6;
+			PATIENT_LOGIN = 6,
+			EXTERNAL_SIMULATOR_LOGIN = 7;
 
 	public static final int LEFT = 0,
 			RIGHT = 1,
@@ -28,6 +29,8 @@ public class Global {
 			RIGHT_MIDDLE = 7,
 			RIGHT_POINTER = 8,
 			RIGHT_THUMB = 9;
+	
+	public static final int MIMIC = 0, HISTORY = 1;
 
 
 	public static final int CLIENT = 0, SERVER = 1;

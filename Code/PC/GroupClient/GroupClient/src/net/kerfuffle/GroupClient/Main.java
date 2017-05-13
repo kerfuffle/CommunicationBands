@@ -1,15 +1,15 @@
 package net.kerfuffle.GroupClient;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
-import net.kerfuffle.GroupClient.Packets.PacketCurrentLetter;
-import net.kerfuffle.GroupClient.Packets.PacketCurrentSentence;
+import net.kerfuffle.GroupClient.Packets.PacketCommand;
 import net.kerfuffle.GroupClient.Packets.PacketDisconnect;
-import net.kerfuffle.GroupClient.Packets.PacketNewSentence;
+import net.kerfuffle.GroupClient.Packets.PacketLogin;
 import net.kerfuffle.Utilities.Network.Client;
 import net.kerfuffle.Utilities.Network.MyCode;
 import net.kerfuffle.Utilities.Network.Packet;
@@ -19,13 +19,30 @@ public class Main {
 	private Client client;
 	private Game game;
 
+
 	public void run() throws NumberFormatException, SocketException, UnknownHostException
 	{
-		String in = JOptionPane.showInputDialog("Server IP:Port");
+		String in = JOptionPane.showInputDialog("IP:Port");
 		String sp[] = in.split(":");
-		client = new Client("Group Client", InetAddress.getByName(sp[0]), Integer.parseInt(sp[1]));
+		client = new Client("Patient Client", InetAddress.getByName(sp[0]), Integer.parseInt(sp[1]));
 
-		game = new Game();
+		Global.Type = Global.CLIENT;
+		
+		int mode = Integer.parseInt(JOptionPane.showInputDialog(null, "Mode"));
+		
+		////////////
+		PacketLogin login = new PacketLogin(mode);
+		try
+		{
+			client.sendPacket(login);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		////////////
+		
+		game = new Game(mode);
 		
 		client.setMyCode(new MyCode()
 		{
@@ -33,27 +50,56 @@ public class Main {
 			{
 				if (packet.getId() == Global.DISCONNECT)
 				{
-					PacketDisconnect p = new PacketDisconnect(packet.getData(), null);
+					PacketDisconnect p = new PacketDisconnect(packet.getData());
 					System.out.println(p.getMessage());
 				}
-				if (packet.getId() == Global.NEW_SENTENCE)
+				if (packet.getId() == Global.COMMAND)
 				{
-					PacketNewSentence p = new PacketNewSentence(packet.getData());
-					game.addNewSentence(p.getSentence());
-				}
-				if (packet.getId() == Global.CURRENT_LETTER)
-				{
-					PacketCurrentLetter p = new PacketCurrentLetter(packet.getData());
-					game.setCurrentLetter(p.getCurrentLetter());
-				}
-				if (packet.getId() == Global.CURRENT_SENTENCE)
-				{
-					PacketCurrentSentence p = new PacketCurrentSentence(packet.getData());
-					game.setCurrentSentence(p.getCurrentSentence());
+					PacketCommand p = new PacketCommand(packet.getData());
+					int type = p.getType();
+					
+					if (type == Global.LEFT)
+					{
+						game.goLeft();
+					}
+					if (type == Global.RIGHT)
+					{
+						game.goRight();
+					}
+					if (type == Global.SENTENCE_ENTER)
+					{
+						game.sentenceEnter();
+					}
+					if (type == Global.LETTER_ENTER)
+					{
+						game.letterEnter();
+					}
+					if (type == Global.CAPSLOCK)
+					{
+						game.capslock();
+					}
+					if (type == Global.SPACE)
+					{
+						game.space();
+					}
+					if (type == Global.BACKSPACE)
+					{
+						game.backspace();
+					}
 				}
 			}
 		});
+
+		client.start();
+		game.run();
+
 	}
+
+
+
+
+
+
 
 
 

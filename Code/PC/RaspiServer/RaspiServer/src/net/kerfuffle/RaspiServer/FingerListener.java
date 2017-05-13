@@ -32,11 +32,14 @@ public class FingerListener implements Runnable{
 	private StringBuilder currentSentence = new StringBuilder();
 	private ArrayList<String> history = new ArrayList<String>();
 	
-	public FingerListener (Server server, InetAddress patientIp, int patientPort)
+	private ArrayList<GroupUser> groupUsers;
+	
+	public FingerListener (Server server, InetAddress patientIp, int patientPort, ArrayList<GroupUser>groupUsers)
 	{
 		this.server = server;
 		this.patientIp = patientIp;
 		this.patientPort = patientPort;
+		this.groupUsers=groupUsers;
 
 		for (int i = 0; i < finger.length; i++)
 		{
@@ -74,60 +77,66 @@ public class FingerListener implements Runnable{
 					p = new PacketCommand(LEFT);
 					currentLetter = incrementChar(currentLetter);
 					
-					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
+//					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
+//					try
+//					{
+//						for (GroupUser gu : groupUsers)
+//						{
+//							if (gu.getMode() == )
+//							{
+//								server.sendToUser(pcl, gu.getIp(), gu.getPort());
+//							}
+//						}
+//					}
+//					catch (IOException e)
+//					{
+//						e.printStackTrace();	
+//					}
 				}
 				if (f.getFingerType() == RIGHT_POINTER)
 				{
 					p = new PacketCommand(RIGHT);
 					currentLetter = decrementChar(currentLetter);
 					
-					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
+//					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
+//					try
+//					{
+//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+//					}
+//					catch (IOException e)
+//					{
+//						e.printStackTrace();	
+//					}
 				}
 				if (f.getFingerType() == LEFT_THUMB)
 				{
 					p = new PacketCommand(BACKSPACE);
 					currentSentence.deleteCharAt(currentSentence.length()-1);
 					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
+//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+//					try
+//					{
+//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+//					}
+//					catch (IOException e)
+//					{
+//						e.printStackTrace();	
+//					}
 				}
 				if (f.getFingerType() == RIGHT_THUMB)
 				{
 					p = new PacketCommand(LETTER_ENTER);
 					currentSentence.append(currentLetter);
 					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
+//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+//					try
+//					{
+//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+//					}
+//					catch (IOException e)
+//					{
+//						e.printStackTrace();	
+//					}
 				}
 				if (f.getFingerType() == LEFT_PINKY)
 				{
@@ -139,15 +148,15 @@ public class FingerListener implements Runnable{
 					p = new PacketCommand(SPACE);
 					currentSentence.append(' ');
 					
-					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-					try
-					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
+//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+//					try
+//					{
+//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+//					}
+//					catch (IOException e)
+//					{
+//						e.printStackTrace();	
+//					}
 				}
 			}
 			else
@@ -160,7 +169,13 @@ public class FingerListener implements Runnable{
 					PacketNewSentence pcl = new PacketNewSentence(currentSentence.toString());
 					try
 					{
-						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+						for (GroupUser gu : groupUsers)
+						{
+							if (gu.getMode() == Global.HISTORY)
+							{
+								server.sendToUser(pcl, gu.getIp(), gu.getPort());
+							}
+						}
 					}
 					catch (IOException e)
 					{
@@ -174,6 +189,13 @@ public class FingerListener implements Runnable{
 
 			try 
 			{
+				for (GroupUser gu : groupUsers)
+				{
+					if (gu.getMode() == Global.MIMIC)
+					{
+						server.sendToUser(p, gu.getIp(), gu.getPort());
+					}
+				}
 				server.sendToUser(p, patientIp, patientPort);
 			} 
 			catch (IOException e) 

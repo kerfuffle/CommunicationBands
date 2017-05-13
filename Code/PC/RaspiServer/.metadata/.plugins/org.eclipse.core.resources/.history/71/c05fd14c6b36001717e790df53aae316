@@ -1,0 +1,259 @@
+package net.kerfuffle.RaspiServer;
+
+import static com.pi4j.io.gpio.RaspiPin.*;
+
+import com.pi4j.io.gpio.Pin;
+
+import net.kerfuffle.RaspiServer.Packets.PacketCommand;
+import net.kerfuffle.RaspiServer.Packets.PacketCurrentLetter;
+import net.kerfuffle.RaspiServer.Packets.PacketCurrentSentence;
+import net.kerfuffle.RaspiServer.Packets.PacketNewSentence;
+import net.kerfuffle.Utilities.Network.Server;
+import static net.kerfuffle.RaspiServer.Global.*;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.ArrayList;
+
+public class FingerListener implements Runnable{
+
+	private Thread t;
+	private boolean running = false;
+
+	private Server server;
+	private InetAddress patientIp;
+	private int patientPort;
+
+	private Finger finger[] = new Finger[10];
+	private final Pin pin[] = {GPIO_00, GPIO_01, GPIO_02, GPIO_03, GPIO_04, GPIO_05, GPIO_06, GPIO_07, GPIO_08, GPIO_09};
+	private final int fingerType[] = {LEFT_PINKY, LEFT_RING, LEFT_MIDDLE, LEFT_POINTER, LEFT_THUMB, RIGHT_THUMB, RIGHT_POINTER, RIGHT_RING, RIGHT_PINKY};
+
+	private char currentLetter;
+	private StringBuilder currentSentence = new StringBuilder();
+	private ArrayList<String> history = new ArrayList<String>();
+	
+	private ArrayList<GroupUser> groupUsers;
+	
+	public FingerListener (Server server, InetAddress patientIp, int patientPort, ArrayList<GroupUser>groupUsers)
+	{
+		this.server = server;
+		this.patientIp = patientIp;
+		this.patientPort = patientPort;
+		this.groupUsers=groupUsers;
+
+		for (int i = 0; i < finger.length; i++)
+		{
+			finger[i] = new Finger(pin[i], fingerType[i]);
+		}
+	}
+
+	public void start()
+	{
+		running = true;
+		t = new Thread(this, "RaspiFingerListener");
+		t.start();
+	}
+
+	public void run()
+	{
+		ArrayList<Finger> triggered = new ArrayList<Finger>();
+		while (running)
+		{
+			for (Finger f : finger)
+			{
+				if (f.isTriggered())
+				{
+					triggered.add(f);
+				}
+			}
+
+			PacketCommand p = null;
+			if (triggered.size() == 1)
+			{
+				Finger f = triggered.get(0);
+
+				if (f.getFingerType() == LEFT_POINTER)	
+				{
+					p = new PacketCommand(LEFT);
+					currentLetter = incrementChar(currentLetter);
+					
+					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
+					try
+					{
+						for (GroupUser gu : groupUsers)
+						{
+							if (gu.getMode() == not history)
+							{
+								server.sendToUser(pcl, gu.getIp(), gu.getPort());
+							}
+						}
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+				}
+				if (f.getFingerType() == RIGHT_POINTER)
+				{
+					p = new PacketCommand(RIGHT);
+					currentLetter = decrementChar(currentLetter);
+					
+					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
+					try
+					{
+						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+				}
+				if (f.getFingerType() == LEFT_THUMB)
+				{
+					p = new PacketCommand(BACKSPACE);
+					currentSentence.deleteCharAt(currentSentence.length()-1);
+					
+					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+					try
+					{
+						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+				}
+				if (f.getFingerType() == RIGHT_THUMB)
+				{
+					p = new PacketCommand(LETTER_ENTER);
+					currentSentence.append(currentLetter);
+					
+					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+					try
+					{
+						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+				}
+				if (f.getFingerType() == LEFT_PINKY)
+				{
+					p = new PacketCommand(CAPSLOCK);
+					currentLetter = Character.toUpperCase(currentLetter);
+				}
+				if (f.getFingerType() == RIGHT_PINKY)
+				{
+					p = new PacketCommand(SPACE);
+					currentSentence.append(' ');
+					
+					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
+					try
+					{
+						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+				}
+			}
+			else
+			{
+				if (hasSentenceEnterCombo(triggered))
+				{
+					p = new PacketCommand(SENTENCE_ENTER);
+					history.add(currentSentence.toString());
+					
+					PacketNewSentence pcl = new PacketNewSentence(currentSentence.toString());
+					try
+					{
+						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();	
+					}
+					
+					currentSentence.delete(0, currentSentence.length()-1);
+				}
+			}
+
+
+			try 
+			{
+				for (GroupUser gu : groupUsers)
+				{
+					if (gu.getMode() == GroupUser.MIMIC)
+					{
+						server.sendToUser(p, gu.getIp(), gu.getPort());
+					}
+				}
+				server.sendToUser(p, patientIp, patientPort);
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+
+			triggered.clear();
+		}
+
+	}
+
+
+	
+	
+	
+	
+	private char incrementChar(char c)
+	{
+		if (c == 'Z')
+		{
+			return 'A';
+		}
+		if (c == 'z')
+		{
+			return 'a';
+		}
+		return c++;
+	}
+	private char decrementChar(char c)
+	{
+		if (c == 'A')
+		{
+			return 'Z';
+		}
+		if (c == 'a')
+		{
+			return 'z';
+		}
+		return c--;
+	}
+	
+	private boolean hasFingerType(ArrayList<Finger>fs, int type)
+	{
+		for (Finger f : fs)
+		{
+			if (f.getFingerType() == type)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean hasSentenceEnterCombo(ArrayList<Finger>fs)
+	{
+		if (fs.size() == 2)
+		{
+			if (hasFingerType(fs, LEFT_POINTER) && hasFingerType(fs, RIGHT_POINTER))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+}
