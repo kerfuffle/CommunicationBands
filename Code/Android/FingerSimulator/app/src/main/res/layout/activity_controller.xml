@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="<"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="230dp" />
-
-    <Button
-        android:id="@+id/right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=">"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="230dp" />
-
-    <Button
-        android:id="@+id/letter_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="230dp" />
 
     <Button
         android:id="@+id/sentence_enter"
-        android:layout_width="160dp"
-        android:layout_height="62dp"
-        android:text="Enter"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="11dp"
+        android:text="Enter" />
 
     <Button
         android:id="@+id/capslock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Caps"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/sentence_enter"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Caps" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sentence_enter"
+        android:layout_alignStart="@+id/sentence_enter"
+        android:layout_centerVertical="true"
+        android:text="L" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/left"
+        android:layout_alignBottom="@+id/left"
+        android:layout_alignLeft="@+id/capslock"
+        android:layout_alignStart="@+id/capslock"
+        android:text="R" />
+
+    <Button
+        android:id="@+id/letter_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/left"
+        android:layout_centerHorizontal="true"
+        android:text="select" />
 
     <Button
         android:id="@+id/backspace"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="backspace"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="377dp" />
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/left"
+        android:layout_alignStart="@+id/left"
+        android:layout_below="@+id/left"
+        android:layout_marginTop="69dp"
+        android:text="Backspace" />
 
     <Button
         android:id="@+id/space"
-        android:layout_width="238dp"
-        android:layout_height="50dp"
-        android:text="space"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="377dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@+id/backspace"
+        android:layout_alignEnd="@+id/right"
+        android:layout_alignRight="@+id/right"
+        android:text="space" />
+</RelativeLayout>

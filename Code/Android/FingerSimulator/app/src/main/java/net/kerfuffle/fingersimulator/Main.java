@@ -15,9 +15,20 @@ import java.net.SocketException;
  * Created by 12664 on 5/12/2017.
  */
 
-public class Main {
+public class Main implements Runnable{
 
     private Client client;
+    private Thread t;
+    private boolean send = false;
+
+    public void start()
+    {
+        t = new Thread(this, "MainClient");
+        t.start();
+    }
+    public void run()
+    {
+    }
 
     public Main(InetAddress ip, int port)
     {
@@ -26,14 +37,6 @@ public class Main {
             client = new Client("Finger Simulator Client", ip, port);
         }
         catch (SocketException e){}
-
-
-        PacketExternalSimulatorLogin pesl = new PacketExternalSimulatorLogin();
-        try
-        {
-            client.sendPacket(pesl);
-        } catch (IOException e){}
-
 
         client.setMyCode(new MyCode() {
             @Override
@@ -44,6 +47,12 @@ public class Main {
         });
 
         client.start();
+
+        PacketExternalSimulatorLogin pesl = new PacketExternalSimulatorLogin();
+        try
+        {
+            client.sendPacket(pesl);
+        } catch (IOException e){}
     }
 
    public void sendCommand(int command)

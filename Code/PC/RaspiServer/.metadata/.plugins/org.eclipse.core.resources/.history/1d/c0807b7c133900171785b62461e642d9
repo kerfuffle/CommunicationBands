@@ -57,7 +57,6 @@ public class Main {
 				if (packet.getId() == Global.EXTERNAL_SIMULATOR_LOGIN)
 				{
 					efs = new ExternalFingerSimulator(server, packet.getIp(), packet.getPort(), patientIp, patientPort, groupUsers);
-					System.out.println("remote logged in");
 				}
 				if (packet.getId() == Global.COMMAND)
 				{

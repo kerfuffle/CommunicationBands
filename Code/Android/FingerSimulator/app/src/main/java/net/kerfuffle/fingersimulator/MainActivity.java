@@ -23,20 +23,21 @@ public class MainActivity extends AppCompatActivity {
 
         final Context context = this;
 
-        TextView ipText = (TextView) findViewById(R.id.ip);
-        TextView portText = (TextView) findViewById(R.id.port);
-
-        try {
-            ip = InetAddress.getByName(ipText.toString());
-        }catch (UnknownHostException e){}
-        port = Integer.parseInt(portText.toString());
-
-
         Button connect = (Button) findViewById(R.id.connect);
         connect.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
+
+                TextView ipText = (TextView) findViewById(R.id.ip);
+                TextView portText = (TextView) findViewById(R.id.port);
+
+                try {
+                    ip = InetAddress.getByName(ipText.getText().toString());
+                }catch (UnknownHostException e){}
+                port = Integer.parseInt(portText.getText().toString());
+
+
                 Intent intent = new Intent(context, ControllerActivity.class);
                 startActivity(intent);
             }
