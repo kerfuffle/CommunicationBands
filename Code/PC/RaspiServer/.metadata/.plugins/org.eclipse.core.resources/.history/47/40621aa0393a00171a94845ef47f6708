@@ -52,7 +52,7 @@ public class Main {
 				{
 					patientIp = packet.getIp();
 					patientPort = packet.getPort();
-					efs.setPatient(patientIp, patientPort);
+					
 					//fingerSimulator = new FingerSimulator(server, patientIp, patientPort, groupUsers);
 					//fingerSimulator.start();
 				}

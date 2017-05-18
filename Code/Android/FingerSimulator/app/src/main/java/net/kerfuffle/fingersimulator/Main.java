@@ -20,14 +20,36 @@ public class Main implements Runnable{
     private Client client;
     private Thread t;
     private boolean send = false;
+    private int command;
+    private boolean running = false;
 
     public void start()
     {
+        running = true;
         t = new Thread(this, "MainClient");
         t.start();
     }
     public void run()
     {
+        PacketExternalSimulatorLogin pesl = new PacketExternalSimulatorLogin();
+        try
+        {
+            client.sendPacket(pesl);
+        } catch (IOException e){e.printStackTrace();}
+
+        while (running)
+        {
+            if (send)
+            {
+                PacketCommand p = new PacketCommand(command);
+                try
+                {
+                    client.sendPacket(p);
+                }
+                catch (IOException e){}
+                send = false;
+            }
+        }
     }
 
     public Main(InetAddress ip, int port)
@@ -47,21 +69,11 @@ public class Main implements Runnable{
         });
 
         client.start();
-
-        PacketExternalSimulatorLogin pesl = new PacketExternalSimulatorLogin();
-        try
-        {
-            client.sendPacket(pesl);
-        } catch (IOException e){}
     }
 
    public void sendCommand(int command)
    {
-       PacketCommand p = new PacketCommand(command);
-       try
-       {
-           client.sendPacket(p);
-       }
-       catch (IOException e){}
+       this.command = command;
+       send = true;
    }
 }

@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 
 import net.kerfuffle.PatientClient.Packets.PacketCommand;
 import net.kerfuffle.PatientClient.Packets.PacketDisconnect;
-import net.kerfuffle.PatientClient.Packets.PacketExternalSimulatorLogin;
 import net.kerfuffle.PatientClient.Packets.PacketPatientLogin;
 import net.kerfuffle.Utilities.Network.Client;
 import net.kerfuffle.Utilities.Network.MyCode;

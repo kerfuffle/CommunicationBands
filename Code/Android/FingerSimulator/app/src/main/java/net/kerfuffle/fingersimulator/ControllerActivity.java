@@ -17,6 +17,7 @@ public class ControllerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_controller);
 
         final Main main = new Main(MainActivity.ip, MainActivity.port);
+        main.start();
 
         Button leftButton = (Button) findViewById(R.id.left);
         Button rightButton = (Button) findViewById(R.id.right);

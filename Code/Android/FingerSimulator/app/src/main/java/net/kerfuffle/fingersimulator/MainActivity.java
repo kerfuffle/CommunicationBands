@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 }catch (UnknownHostException e){}
                 port = Integer.parseInt(portText.getText().toString());
 
-
                 Intent intent = new Intent(context, ControllerActivity.class);
                 startActivity(intent);
             }

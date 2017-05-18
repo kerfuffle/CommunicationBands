@@ -34,6 +34,7 @@ public class Main {
 		try
 		{
 			client.sendPacket(login);
+			client.sendPacket(new PacketExternalSimulatorLogin());
 		}
 		catch (IOException e)
 		{

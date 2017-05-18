@@ -12,6 +12,7 @@ public class PacketExternalSimulatorLogin extends Packet {
     public PacketExternalSimulatorLogin()
     {
         super(null, Global.EXTERNAL_SIMULATOR_LOGIN);
+        data = id+",";
     }
 
 }

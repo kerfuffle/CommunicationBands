@@ -21,7 +21,7 @@ public class ExternalFingerSimulator {
 	private Server server;
 	private ArrayList<GroupUser> groupUsers;
 	private InetAddress patientIp;
-	private int patientPort = -1;
+	private int patientPort;
 	
 	private InetAddress ip;
 	private int port;
@@ -33,8 +33,6 @@ public class ExternalFingerSimulator {
 		this.groupUsers = groupUsers;
 		this.ip = ip;
 		this.port = port;
-		this.patientIp = patientIp;
-		this.patientPort = patientPort;
 	}
 	
 	public InetAddress getIp()
@@ -46,17 +44,11 @@ public class ExternalFingerSimulator {
 		return port;
 	}
 	
-	public void setPatient(InetAddress ip, int port)
-	{
-		patientIp = ip;
-		patientPort = port;
-	}
-	
 	public void sendNextCommand(int nextCommand)
 	{
 		Packet p = new PacketCommand(nextCommand);
 		
-		if (p != null && patientIp != null && patientPort != -1)
+		if (p != null)
 		{
 			try 
 			{

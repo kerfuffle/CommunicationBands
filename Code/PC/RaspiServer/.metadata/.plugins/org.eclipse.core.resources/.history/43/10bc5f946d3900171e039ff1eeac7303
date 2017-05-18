@@ -38,8 +38,6 @@ public class Main {
 		{
 			public void run (Packet packet)
 			{
-				System.out.println(packet.getIp());
-				
 				if (packet.getId() == Global.LOGIN)
 				{
 					PacketLogin p = new PacketLogin(packet.getData(), packet.getIp(), packet.getPort());
@@ -52,7 +50,7 @@ public class Main {
 				{
 					patientIp = packet.getIp();
 					patientPort = packet.getPort();
-					efs.setPatient(patientIp, patientPort);
+					
 					//fingerSimulator = new FingerSimulator(server, patientIp, patientPort, groupUsers);
 					//fingerSimulator.start();
 				}

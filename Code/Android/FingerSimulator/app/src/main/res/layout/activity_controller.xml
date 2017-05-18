@@ -29,7 +29,7 @@
     <Button
         android:id="@+id/left"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_alignLeft="@+id/sentence_enter"
         android:layout_alignStart="@+id/sentence_enter"
         android:layout_centerVertical="true"
@@ -38,17 +38,16 @@
     <Button
         android:id="@+id/right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/left"
-        android:layout_alignBottom="@+id/left"
+        android:layout_height="70dp"
+        android:text="R"
         android:layout_alignLeft="@+id/capslock"
         android:layout_alignStart="@+id/capslock"
-        android:text="R" />
+        android:layout_alignBottom="@+id/letter_select" />
 
     <Button
         android:id="@+id/letter_select"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_alignTop="@+id/left"
         android:layout_centerHorizontal="true"
         android:text="select" />
@@ -57,18 +56,19 @@
         android:id="@+id/backspace"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
+        android:text="Backspace"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/left"
         android:layout_alignStart="@+id/left"
-        android:layout_below="@+id/left"
-        android:layout_marginTop="69dp"
-        android:text="Backspace" />
+        android:layout_marginBottom="15dp" />
 
     <Button
         android:id="@+id/space"
         android:layout_width="200dp"
         android:layout_height="70dp"
+        android:text="space"
+        android:layout_alignBaseline="@+id/backspace"
         android:layout_alignBottom="@+id/backspace"
-        android:layout_alignEnd="@+id/right"
-        android:layout_alignRight="@+id/right"
-        android:text="space" />
+        android:layout_toRightOf="@+id/sentence_enter"
+        android:layout_toEndOf="@+id/sentence_enter" />
 </RelativeLayout>
