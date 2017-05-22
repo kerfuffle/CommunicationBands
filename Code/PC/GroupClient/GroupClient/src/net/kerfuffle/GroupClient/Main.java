@@ -27,9 +27,9 @@ public class Main {
 		client = new Client("Patient Client", InetAddress.getByName(sp[0]), Integer.parseInt(sp[1]));
 
 		Global.Type = Global.CLIENT;
-		
+
 		int mode = Integer.parseInt(JOptionPane.showInputDialog(null, "Mode"));
-		
+
 		////////////
 		PacketLogin login = new PacketLogin(mode);
 		try
@@ -41,9 +41,9 @@ public class Main {
 			e.printStackTrace();
 		}
 		////////////
-		
+
 		game = new Game(mode);
-		
+
 		client.setMyCode(new MyCode()
 		{
 			public void run(Packet packet)
@@ -57,7 +57,7 @@ public class Main {
 				{
 					PacketCommand p = new PacketCommand(packet.getData());
 					int type = p.getType();
-					
+
 					if (type == Global.LEFT)
 					{
 						game.goLeft();
@@ -88,6 +88,7 @@ public class Main {
 					}
 				}
 			}
+
 		});
 
 		client.start();

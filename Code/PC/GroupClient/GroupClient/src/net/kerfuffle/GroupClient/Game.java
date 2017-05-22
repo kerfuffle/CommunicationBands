@@ -15,7 +15,7 @@ public class Game extends DavisGUI{
 	private LetterSet letterSet;
 	private WordSet wordSet;
 	private SentenceHistory sentenceHistory;
-	private Font letter_font, letter_select_font, word_font;
+	private Font letter_font, letter_select_font, word_font, histFont;
 	
 	private boolean caps = false;
 	
@@ -23,6 +23,7 @@ public class Game extends DavisGUI{
 	private Triangle rightTri;
 	private Quad center;
 	
+	private History history;
 	
 	private final int MIMIC = 0, HISTORY = 1;
 	private int mode = MIMIC;
@@ -41,25 +42,22 @@ public class Game extends DavisGUI{
 	public void childInit()
 	{
 
+		try 
+		{
+			letter_font = new Font(new FileInputStream("res/Helvetica.ttf"), 72);
+			letter_select_font = new Font(new FileInputStream("res/Helvetica.ttf"), 92);
+			word_font = new Font(new FileInputStream("res/Helvetica.ttf"), 56);
+		} 
+		catch (FontFormatException | IOException ex) {}
+		
+		letterSet = new LetterSet(letter_font, letter_select_font, 9, -500, 500, -300);
+		wordSet = new WordSet(word_font);
+		sentenceHistory = new SentenceHistory(word_font);
+		
 		if (mode == MIMIC)
 		{
 			center = new Quad(-50, -310, 100,100, new RGB(0,0,0));
 			center.setOuterBorder(10, 10, new RGB(1,0,0));
-			
-			try 
-			{
-				letter_font = new Font(new FileInputStream("res/Helvetica.ttf"), 72);
-				letter_select_font = new Font(new FileInputStream("res/Helvetica.ttf"), 92);
-				word_font = new Font(new FileInputStream("res/Helvetica.ttf"), 56);
-			} 
-			catch (FontFormatException | IOException ex) 
-			{
-				letter_font = new Font();
-			}
-
-			letterSet = new LetterSet(letter_font, letter_select_font, 9, -500, 500, -300);
-			wordSet = new WordSet(word_font);
-			sentenceHistory = new SentenceHistory(word_font);
 			
 			leftTri = new Triangle(-600, -300, new RGB(1,0,1));
 			leftTri.setRelativeVertex(0, 0, 0);
@@ -73,7 +71,12 @@ public class Game extends DavisGUI{
 		}
 		else if (mode == HISTORY)
 		{
-			
+			try
+			{
+				histFont = new Font(new FileInputStream("res/Helvetica.ttf"), 18);
+			}
+			catch (FontFormatException | IOException ex) {}
+			history = new History(histFont, windowWidth, windowHeight);
 		}
 		
 	}
@@ -90,7 +93,7 @@ public class Game extends DavisGUI{
 		}
 		else if (mode == HISTORY)
 		{
-			
+			history.draw();
 		}
 		
 	}
@@ -111,6 +114,7 @@ public class Game extends DavisGUI{
 	public void sentenceEnter()
 	{
 		sentenceHistory.addSentence(wordSet.toString());
+		history.addSentence(wordSet.toString());
 		wordSet.clear();
 	}
 	public void letterEnter()

@@ -38,7 +38,7 @@ public class Main {
 		{
 			public void run (Packet packet)
 			{
-				System.out.println(packet.getIp());
+				//System.out.println(packet.getIp());
 				
 				if (packet.getId() == Global.LOGIN)
 				{
@@ -52,7 +52,11 @@ public class Main {
 				{
 					patientIp = packet.getIp();
 					patientPort = packet.getPort();
-					efs.setPatient(patientIp, patientPort);
+					if (efs != null)
+					{
+						efs.setPatient(patientIp, patientPort);
+					}
+					
 					//fingerSimulator = new FingerSimulator(server, patientIp, patientPort, groupUsers);
 					//fingerSimulator.start();
 				}
@@ -63,10 +67,13 @@ public class Main {
 				}
 				if (packet.getId() == Global.COMMAND)
 				{
-					if (efs.getIp().toString().equals(packet.getIp().toString()) && efs.getPort() == packet.getPort())
+					if (efs !=null)
 					{
-						PacketCommand p = new PacketCommand(packet.getData());
-						efs.sendNextCommand(p.getCommand());
+						if (efs.getIp().toString().equals(packet.getIp().toString()) && efs.getPort() == packet.getPort())
+						{
+							PacketCommand p = new PacketCommand(packet.getData());
+							efs.sendNextCommand(p.getCommand());
+						}
 					}
 				}
 				if (packet.getId() == Global.DISCONNECT)

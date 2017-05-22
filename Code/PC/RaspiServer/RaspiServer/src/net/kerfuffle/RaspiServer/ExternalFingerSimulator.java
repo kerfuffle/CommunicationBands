@@ -13,6 +13,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 
 import net.kerfuffle.RaspiServer.Packets.PacketCommand;
+import net.kerfuffle.RaspiServer.Packets.PacketNewSentence;
 import net.kerfuffle.Utilities.Network.Packet;
 import net.kerfuffle.Utilities.Network.Server;
 
@@ -62,7 +63,7 @@ public class ExternalFingerSimulator {
 			{
 				for (GroupUser gu : groupUsers)
 				{
-					if (gu.getMode() == Global.MIMIC)
+					if (gu.getMode() == Global.MIMIC || gu.getMode() == Global.HISTORY)
 					{
 						server.sendToUser(p, gu.getIp(), gu.getPort());
 					}

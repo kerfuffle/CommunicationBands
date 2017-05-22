@@ -25,7 +25,7 @@ public class Game extends DavisGUI{
 
 	public Game()
 	{
-		super("PatientClient", 1300, 700);
+		super("PatientClient");
 	}
 
 	public void childInit()
