@@ -1,0 +1,24 @@
+package net.kerfuffle.RaspiServer.Packets;
+
+import net.kerfuffle.RaspiServer.Global;
+import net.kerfuffle.Utilities.Network.Packet;
+
+public class PacketCurrentConfig extends Packet{
+
+	public PacketCurrentConfig(char currentLetter, boolean caps)
+	{
+		super(null, Global.CURRENT_CONFIG);
+		data = id + "," + currentLetter + "," + getIntFromBool(caps) + ",";
+	}
+	
+	
+	private int getIntFromBool(boolean b)
+	{
+		if (b)
+		{
+			return 1;
+		}
+		return 0;
+	}
+	
+}

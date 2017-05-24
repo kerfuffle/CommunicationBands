@@ -1,5 +1,6 @@
 package net.kerfuffle.RaspiServer;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import net.kerfuffle.RaspiServer.Packets.PacketCommand;
+import net.kerfuffle.RaspiServer.Packets.PacketCurrentConfig;
 import net.kerfuffle.RaspiServer.Packets.PacketDisconnect;
 import net.kerfuffle.RaspiServer.Packets.PacketLogin;
-import net.kerfuffle.Utilities.Network.MyCode;
+import net.kerfuffle.Utilities.Network.MyNetworkCode;
 import net.kerfuffle.Utilities.Network.Packet;
 import net.kerfuffle.Utilities.Network.Server;
 import net.kerfuffle.Utilities.Network.User;
@@ -34,9 +36,9 @@ public class Main {
 		
 		server = new Server("RaspiServer", port);
 
-		server.setMyCode(new MyCode()
+		server.setMyNetworkCode(new MyNetworkCode()
 		{
-			public void run (Packet packet)
+			public void run (Packet packet) throws IOException
 			{
 				//System.out.println(packet.getIp());
 				
@@ -47,6 +49,12 @@ public class Main {
 					GroupUser gu = new GroupUser(packet.getIp(), packet.getPort(), p.getMode());
 					groupUsers.add(gu);
 					server.addUser(u);
+					
+					if (efs != null)
+					{
+						PacketCurrentConfig pcc = new PacketCurrentConfig(efs.currentLetter(), efs.getLetterSet());
+						server.sendToUser(pcc, packet.getIp(), packet.getPort());
+					}
 				}
 				if (packet.getId() == Global.PATIENT_LOGIN)
 				{

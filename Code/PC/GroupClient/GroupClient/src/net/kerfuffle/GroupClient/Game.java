@@ -35,7 +35,6 @@ public class Game extends DavisGUI{
 		{
 			super.setScreenSize(300, 500);
 		}
-		
 		this.mode = mode;
 	}
 
@@ -79,6 +78,11 @@ public class Game extends DavisGUI{
 			history = new History(histFont, windowWidth, windowHeight);
 		}
 		
+		if (letterPos != ',' && set != -1)
+		{
+			setLetterPos(letterPos);
+			setLetterSet(set);
+		}
 	}
 	
 	public void childLoop()
@@ -95,11 +99,34 @@ public class Game extends DavisGUI{
 		{
 			history.draw();
 		}
-		
 	}
 
-
-
+	
+	
+	private char letterPos = ',';
+	private int set = -1;
+	public void setLetterPos(char c)
+	{
+		if (letterSet == null)
+		{
+			letterPos = c;
+		}
+		else
+		{
+			letterSet.setPos(c);
+		}
+	}
+	public void setLetterSet(int i)
+	{
+		if (letterSet == null)
+		{
+			set = i;
+		}
+		else
+		{
+			letterSet.setSet(i);
+		}
+	}
 
 	public void goLeft()
 	{

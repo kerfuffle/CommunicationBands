@@ -1,0 +1,43 @@
+package net.kerfuffle.Utilities;
+
+public class DavisThread implements Runnable{
+
+	private Thread t;
+	private String threadName;
+	public volatile boolean running = false;
+	private MyCode myCode;
+	
+	public DavisThread(String name)
+	{
+		threadName = name;
+	}
+	
+	public void setMyCode(MyCode myCode)
+	{
+		this.myCode = myCode;
+	}
+	
+	public void start()
+	{
+		running = true;
+		t = new Thread(this, threadName);
+		t.start();
+	}
+	
+	public void run()
+	{
+		System.out.println(running);
+		while (running)
+		{
+			myCode.run();
+			
+			running = false;
+		}
+		System.out.println("werout");
+	}
+	
+	public void close()
+	{
+		running = false;
+	}
+}

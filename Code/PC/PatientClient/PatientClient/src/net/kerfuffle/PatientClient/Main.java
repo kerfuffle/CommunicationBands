@@ -11,8 +11,9 @@ import net.kerfuffle.PatientClient.Packets.PacketCommand;
 import net.kerfuffle.PatientClient.Packets.PacketDisconnect;
 import net.kerfuffle.PatientClient.Packets.PacketExternalSimulatorLogin;
 import net.kerfuffle.PatientClient.Packets.PacketPatientLogin;
+import net.kerfuffle.Utilities.MyCode;
 import net.kerfuffle.Utilities.Network.Client;
-import net.kerfuffle.Utilities.Network.MyCode;
+import net.kerfuffle.Utilities.Network.MyNetworkCode;
 import net.kerfuffle.Utilities.Network.Packet;
 
 public class Main {
@@ -43,7 +44,15 @@ public class Main {
 		
 		game = new Game();
 		
-		client.setMyCode(new MyCode()
+		game.setCloseCode(new MyCode()
+		{
+			public void run()
+			{
+				client.close();
+			}
+		});
+		
+		client.setMyNetworkCode(new MyNetworkCode()
 		{
 			public void run(Packet packet)
 			{

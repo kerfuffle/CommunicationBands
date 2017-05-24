@@ -47,12 +47,14 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowCloseCallbackI;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
 import de.matthiasmann.twl.utils.PNGDecoder.Format;
+import net.kerfuffle.Utilities.MyCode;
 import net.kerfuffle.Utilities.GUI.Text.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -64,7 +66,7 @@ import static org.lwjgl.opengl.GL15.glGenBuffers;
 import static org.lwjgl.stb.STBEasyFont.stb_easy_font_print;
 
 
-public abstract class DavisGUI {
+public abstract class DavisGUI implements GLFWWindowCloseCallbackI{
 
 	public static ArrayList<DavisObject> DavisObjects = new ArrayList<DavisObject>();
 	
@@ -75,6 +77,8 @@ public abstract class DavisGUI {
 	protected static int windowHeight;
 	public static float aspectRatio;
 	public static float scale = 1;
+	
+	private MyCode closeCode;
 	
 	private boolean fullScreen = false;
 	
@@ -160,7 +164,9 @@ public abstract class DavisGUI {
 			if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
 				glfwSetWindowShouldClose(window, true); 
 		});
-
+		
+		
+		GLFW.glfwSetWindowCloseCallback(window, this);
 
 		try ( MemoryStack stack = stackPush() ) {
 			IntBuffer pWidth = stack.mallocInt(1); 
@@ -188,12 +194,20 @@ public abstract class DavisGUI {
 		
 		//glEnableClientState(GL_VERTEX_ARRAY);
 	}
+	
+	public void setCloseCode(MyCode closeCode)
+	{
+		this.closeCode = closeCode;
+	}
+	
+	public void invoke(long window)
+	{
+		closeCode.run();
+	}
 
 	private void loop()
 	{
 		GL.createCapabilities();
-		
-		
 		
 		glEnableClientState(GL_VERTEX_ARRAY);
 		//glEnableClientState(GL11.GL_3D);

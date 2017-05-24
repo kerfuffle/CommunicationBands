@@ -8,10 +8,12 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 import net.kerfuffle.GroupClient.Packets.PacketCommand;
+import net.kerfuffle.GroupClient.Packets.PacketCurrentConfig;
 import net.kerfuffle.GroupClient.Packets.PacketDisconnect;
 import net.kerfuffle.GroupClient.Packets.PacketLogin;
+import net.kerfuffle.Utilities.MyCode;
 import net.kerfuffle.Utilities.Network.Client;
-import net.kerfuffle.Utilities.Network.MyCode;
+import net.kerfuffle.Utilities.Network.MyNetworkCode;
 import net.kerfuffle.Utilities.Network.Packet;
 
 public class Main {
@@ -44,7 +46,15 @@ public class Main {
 
 		game = new Game(mode);
 
-		client.setMyCode(new MyCode()
+		game.setCloseCode(new MyCode()
+		{
+			public void run()
+			{
+				client.close();
+			}
+		});
+
+		client.setMyNetworkCode(new MyNetworkCode()
 		{
 			public void run(Packet packet)
 			{
@@ -52,6 +62,12 @@ public class Main {
 				{
 					PacketDisconnect p = new PacketDisconnect(packet.getData());
 					System.out.println(p.getMessage());
+				}
+				if (packet.getId() == Global.CURRENT_CONFIG)
+				{
+					PacketCurrentConfig p = new PacketCurrentConfig(packet.getData());
+					game.setLetterPos(p.getCurrentLetter());
+					game.setLetterSet(p.getLetterSet());
 				}
 				if (packet.getId() == Global.COMMAND)
 				{

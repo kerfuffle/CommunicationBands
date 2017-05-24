@@ -1,0 +1,5 @@
+package net.kerfuffle.GroupClient.Packets;
+
+public class PacketCurrentConfig {
+
+}

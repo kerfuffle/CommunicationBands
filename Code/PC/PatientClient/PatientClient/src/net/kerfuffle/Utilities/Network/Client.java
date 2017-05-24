@@ -8,52 +8,48 @@ import java.util.ArrayList;
 
 import static net.kerfuffle.Utilities.Network.Packet.*;
 
+
 public class Client implements Runnable{
 
 	private Thread t;
-	private String threadName;
-	private MyCode myCode;
+	private volatile boolean running = false;
 	
+	private MyNetworkCode myNetworkCode;
+
 	private DatagramSocket socket;
 	private InetAddress ip;
 	private int port;
-	private boolean running = false;
+
+	private Packet incoming = null;
 	
 	private ArrayList <User> users = new ArrayList <User>();
-	
+
 	public Client(String threadName, InetAddress ip, int port) throws SocketException
 	{
-		this.threadName=threadName;
 		this.ip = ip;
 		this.port=port;
 		socket = new DatagramSocket();
 	}
-	public void start()
-	{
-		running = true;
-		t = new Thread(this, threadName);
-		t.start();
-	}
-	
-	public void setMyCode(MyCode myCode)
-	{
-		this.myCode = myCode;
-	}
-	
+
 	public void close()
 	{
 		running = false;
 	}
 	
+	public void start()
+	{
+		running = true;
+		t = new Thread();
+		t.start();
+	}
 	public void run()
 	{
-		Packet incoming = null;
-		while (isRunning())
+		while (running)
 		{
 			try 
 			{
 				incoming = receivePacket(socket);
-				myCode.run(incoming);
+				myNetworkCode.run(incoming);
 			} 
 			catch (IOException e) 
 			{
@@ -62,12 +58,10 @@ public class Client implements Runnable{
 		}
 	}
 	
-	
-	public boolean isRunning()
+	public void setMyNetworkCode(MyNetworkCode myNetworkCode)
 	{
-		return running;
+		this.myNetworkCode = myNetworkCode;
 	}
-	
 	public void addUser(User u)
 	{
 		users.add(u);
@@ -91,7 +85,7 @@ public class Client implements Runnable{
 			}
 		}
 	}
-	
+
 	public InetAddress getIp()
 	{
 		return ip;
@@ -100,10 +94,10 @@ public class Client implements Runnable{
 	{
 		return port;
 	}
-	
+
 	public void sendPacket(Packet p) throws IOException
 	{
 		Packet.sendPacket(p, socket, ip, port);
 	}
-	
+
 }

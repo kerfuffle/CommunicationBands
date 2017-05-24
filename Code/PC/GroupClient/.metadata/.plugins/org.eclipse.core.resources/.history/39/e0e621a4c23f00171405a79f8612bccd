@@ -1,0 +1,14 @@
+package net.kerfuffle.Utilities.GUI;
+
+import org.lwjgl.glfw.GLFWWindowCloseCallbackI;
+
+public class DavisCloseHelper implements {
+
+	public void invoke(long window) 
+	{
+		
+	}
+
+	
+	
+}

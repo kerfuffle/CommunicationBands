@@ -14,8 +14,8 @@ public class Server implements Runnable{
 	private Thread t;
 	private String threadName;
 	private int port;
-	private boolean running = false;
-	private MyCode myCode;
+	private volatile boolean running = false;
+	private MyNetworkCode myNetworkCode;
 	private DatagramSocket socket;
 	
 	private ArrayList <User> users = new ArrayList<User>();
@@ -27,9 +27,9 @@ public class Server implements Runnable{
 		socket = new DatagramSocket(port);
 	}
 
-	public void setMyCode(MyCode myCode)
+	public void setMyNetworkCode(MyNetworkCode myNetworkCode)
 	{
-		this.myCode = myCode;
+		this.myNetworkCode = myNetworkCode;
 	}
 	
 	public void start()
@@ -47,7 +47,7 @@ public class Server implements Runnable{
 			try 
 			{
 				incoming = receivePacket(socket);
-				myCode.run(incoming);
+				myNetworkCode.run(incoming);
 			} 
 			catch (IOException e) 
 			{
@@ -56,11 +56,9 @@ public class Server implements Runnable{
 		}
 	}
 
-	
-	
-	public boolean isRunning()
+	public void close()
 	{
-		return running;
+		running = false;
 	}
 	
 	public int getPort()
