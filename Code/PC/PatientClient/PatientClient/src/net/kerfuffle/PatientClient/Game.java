@@ -92,10 +92,12 @@ public class Game extends DavisGUI{
 	public void sentenceEnter() throws IOException
 	{
 		sentenceHistory.addSentence(wordSet.toString());
-		wordSet.clear();
+		
 		
 		PacketNewSentence pns = new PacketNewSentence(wordSet.toString());
 		client.sendPacket(pns);
+		
+		wordSet.clear();
 	}
 	public void letterEnter()
 	{

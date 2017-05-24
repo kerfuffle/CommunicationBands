@@ -13,15 +13,16 @@ public class Client implements Runnable{
 
 	private Thread t;
 	private volatile boolean running = false;
-	
+
 	private MyNetworkCode myNetworkCode;
 
 	private DatagramSocket socket;
 	private InetAddress ip;
 	private int port;
+	private String threadName;
 
 	private Packet incoming = null;
-	
+
 	private ArrayList <User> users = new ArrayList <User>();
 
 	public Client(String threadName, InetAddress ip, int port) throws SocketException
@@ -29,35 +30,36 @@ public class Client implements Runnable{
 		this.ip = ip;
 		this.port=port;
 		socket = new DatagramSocket();
+		this.threadName = threadName;
 	}
 
 	public void close()
 	{
 		running = false;
 	}
-	
+
 	public void start()
 	{
 		running = true;
-		t = new Thread();
+		t = new Thread(this, threadName);
 		t.start();
 	}
 	public void run()
 	{
 		while (running)
 		{
-			try 
+			try
 			{
 				incoming = receivePacket(socket);
 				myNetworkCode.run(incoming);
-			} 
-			catch (IOException e) 
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	public void setMyNetworkCode(MyNetworkCode myNetworkCode)
 	{
 		this.myNetworkCode = myNetworkCode;

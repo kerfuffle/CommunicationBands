@@ -19,6 +19,7 @@ public class Client implements Runnable{
 	private DatagramSocket socket;
 	private InetAddress ip;
 	private int port;
+	private String threadName;
 
 	private Packet incoming = null;
 	
@@ -29,6 +30,7 @@ public class Client implements Runnable{
 		this.ip = ip;
 		this.port=port;
 		socket = new DatagramSocket();
+		this.threadName = threadName;
 	}
 
 	public void close()
@@ -39,7 +41,7 @@ public class Client implements Runnable{
 	public void start()
 	{
 		running = true;
-		t = new Thread();
+		t = new Thread(this, threadName);
 		t.start();
 	}
 	public void run()

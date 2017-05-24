@@ -83,7 +83,7 @@ public class Packet {
 		
 		int id = Integer.parseInt(sp[0]);
 		Packet p = new Packet(data, id, receivePacket.getAddress(), receivePacket.getPort());
-		
+
 		return p;
 	}
 	
