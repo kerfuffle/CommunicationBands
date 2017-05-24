@@ -9,7 +9,7 @@ import java.net.InetAddress;
 public class Packet {
 	
 	protected int id = -1;
-	protected String data;
+	protected CharSequence data;
 	
 	private InetAddress ip;
 	private int port;
@@ -18,27 +18,27 @@ public class Packet {
 	 * Need to define packet ids in some Global class (outside of this library)
 	 * @param data
 	 */
-	public Packet(String data, int id, InetAddress ip, int port)
+	public Packet(CharSequence data, int id, InetAddress ip, int port)
 	{
 		this.data=data;
 		this.id = id;
 		this.ip=ip;
 		this.port=port;
 	}
-	public Packet(String data, InetAddress ip, int port)
+	public Packet(CharSequence data, InetAddress ip, int port)
 	{
 		this.data=data;
 		this.ip=ip;
 		this.port=port;
 	}
-	public Packet(String data, int id)
+	public Packet(CharSequence data, int id)
 	{
 		this.data=data;
 		this.id=id;
 	}
 	public Packet(){}
 	
-	public String getData()
+	public CharSequence getData()
 	{
 		return data;
 	}
@@ -56,7 +56,7 @@ public class Packet {
 	}
 	public String toString()
 	{
-		return data;
+		return data.toString();
 	}
 	
 	

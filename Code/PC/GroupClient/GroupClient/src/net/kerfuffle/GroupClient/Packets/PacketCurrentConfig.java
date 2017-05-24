@@ -8,10 +8,10 @@ public class PacketCurrentConfig extends Packet{
 	private char currentLetter;
 	private int letterSet;
 	
-	public PacketCurrentConfig(String data)
+	public PacketCurrentConfig(CharSequence data)
 	{
 		super(data, Global.CURRENT_CONFIG);
-		String sp[] = data.split(",");
+		String sp[] = data.toString().split(",");
 		currentLetter = sp[1].charAt(0);
 		letterSet = Integer.parseInt(sp[2]);
 	}

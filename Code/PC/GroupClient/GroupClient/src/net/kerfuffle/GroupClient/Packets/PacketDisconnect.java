@@ -7,11 +7,11 @@ public class PacketDisconnect extends Packet{
 	
 	private String message;
 	
-	public PacketDisconnect (String data, Object obj)	//server disconnects
+	public PacketDisconnect (CharSequence data)	//server disconnects
 	{
 		super(data, Global.DISCONNECT);
 		
-		String sp[] = data.split(",");
+		String sp[] = data.toString().split(",");
 		message = sp[1];
 		
 	}

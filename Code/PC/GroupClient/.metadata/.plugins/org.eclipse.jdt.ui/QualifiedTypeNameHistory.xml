@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="net.kerfuffle.GroupClient.Packets.PacketLogin"/>
+<fullyQualifiedTypeName name="net.kerfuffle.GroupClient.Packets.PacketCurrentConfig"/>
+<fullyQualifiedTypeName name="org.lwjgl.glfw.GLFWWindowCloseCallbackI"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.DavisThread"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.MyCode"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.GUI.DavisGUI"/>
+<fullyQualifiedTypeName name="org.lwjgl.glfw.GLFW"/>
+<fullyQualifiedTypeName name="net.kerfuffle.GroupClient.LetterSet"/>
 <fullyQualifiedTypeName name="net.kerfuffle.GroupClient.Global"/>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
 <fullyQualifiedTypeName name="net.kerfuffle.GroupClient.Packets.PacketNewSentence"/>

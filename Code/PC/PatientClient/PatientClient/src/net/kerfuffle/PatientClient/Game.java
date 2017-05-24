@@ -4,11 +4,13 @@ import java.awt.FontFormatException;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import net.kerfuffle.PatientClient.Packets.PacketNewSentence;
 import net.kerfuffle.Utilities.GUI.DavisGUI;
 import net.kerfuffle.Utilities.GUI.Quad;
 import net.kerfuffle.Utilities.GUI.RGB;
 import net.kerfuffle.Utilities.GUI.Triangle;
 import net.kerfuffle.Utilities.GUI.Text.Font;
+import net.kerfuffle.Utilities.Network.Client;
 
 public class Game extends DavisGUI{
 
@@ -23,9 +25,12 @@ public class Game extends DavisGUI{
 	private Triangle rightTri;
 	private Quad center;
 
-	public Game()
+	private Client client;
+	
+	public Game(Client client)
 	{
-		super("PatientClient");
+		super("PatientClientGame");
+		this.client = client;
 	}
 
 	public void childInit()
@@ -84,10 +89,13 @@ public class Game extends DavisGUI{
 		letterSet.shiftRight();
 		//blink right arrow
 	}
-	public void sentenceEnter()
+	public void sentenceEnter() throws IOException
 	{
 		sentenceHistory.addSentence(wordSet.toString());
 		wordSet.clear();
+		
+		PacketNewSentence pns = new PacketNewSentence(wordSet.toString());
+		client.sendPacket(pns);
 	}
 	public void letterEnter()
 	{

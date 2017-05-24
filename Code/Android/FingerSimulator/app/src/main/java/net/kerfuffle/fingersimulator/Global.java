@@ -9,7 +9,8 @@ public class Global {
             CURRENT_SENTENCE = 4,
             NEW_SENTENCE = 5,
             PATIENT_LOGIN = 6,
-            EXTERNAL_SIMULATOR_LOGIN = 7;
+            EXTERNAL_SIMULATOR_LOGIN = 7,
+            CURRENT_CONFIG = 8;
 
     public static final int LEFT = 0,
             RIGHT = 1,

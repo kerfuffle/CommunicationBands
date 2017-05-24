@@ -9,11 +9,11 @@ public class PacketDisconnect extends Packet{
 	
 	private String message;
 	
-	public PacketDisconnect (String data, InetAddress ip, int port)
+	public PacketDisconnect (CharSequence data)
 	{
-		super(data, Global.DISCONNECT, ip, port);
+		super(data, Global.DISCONNECT);
 		
-		String sp[] = data.split(",");
+		String sp[] = data.toString().split(",");
 		message = sp[1];
 	}
 	public PacketDisconnect (String message)

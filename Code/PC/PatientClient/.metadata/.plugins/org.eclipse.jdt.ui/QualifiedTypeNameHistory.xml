@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Client"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.MyCode"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketCommand"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketDisconnect"/>
-<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Global"/>
 <fullyQualifiedTypeName name="java.net.InetAddress"/>
-<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
 <fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketPatientLogin"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.GUI.Quad"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.MyNetworkCode"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.MyCode"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Client"/>
+<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Global"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.Packet"/>
+<fullyQualifiedTypeName name="net.kerfuffle.PatientClient.Packets.PacketNewSentence"/>
 </qualifiedTypeNameHistroy>

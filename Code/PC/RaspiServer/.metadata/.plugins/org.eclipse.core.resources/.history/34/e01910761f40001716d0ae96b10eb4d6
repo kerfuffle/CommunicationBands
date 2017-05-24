@@ -1,0 +1,24 @@
+package net.kerfuffle.RaspiServer.Packets;
+
+import java.net.InetAddress;
+
+import net.kerfuffle.RaspiServer.Global;
+import net.kerfuffle.Utilities.Network.Packet;
+
+public class PacketLogin extends Packet{
+	
+	private int mode = -1;
+	
+	public PacketLogin(CharSequence data, InetAddress ip, int port)
+	{
+		super (data, Global.LOGIN, ip, port);
+		
+		String sp[] = data.split(",");
+		mode = Integer.parseInt(sp[1]);
+	}
+	
+	public int getMode()
+	{
+		return mode;
+	}
+}

@@ -11,6 +11,7 @@ import net.kerfuffle.GroupClient.Packets.PacketCommand;
 import net.kerfuffle.GroupClient.Packets.PacketCurrentConfig;
 import net.kerfuffle.GroupClient.Packets.PacketDisconnect;
 import net.kerfuffle.GroupClient.Packets.PacketLogin;
+import net.kerfuffle.GroupClient.Packets.PacketNewSentence;
 import net.kerfuffle.Utilities.MyCode;
 import net.kerfuffle.Utilities.Network.Client;
 import net.kerfuffle.Utilities.Network.MyNetworkCode;
@@ -63,46 +64,58 @@ public class Main {
 					PacketDisconnect p = new PacketDisconnect(packet.getData());
 					System.out.println(p.getMessage());
 				}
-				if (packet.getId() == Global.CURRENT_CONFIG)
+				if (mode == Global.MIMIC)
 				{
-					PacketCurrentConfig p = new PacketCurrentConfig(packet.getData());
-					game.setLetterPos(p.getCurrentLetter());
-					game.setLetterSet(p.getLetterSet());
-				}
-				if (packet.getId() == Global.COMMAND)
-				{
-					PacketCommand p = new PacketCommand(packet.getData());
-					int type = p.getType();
+					if (packet.getId() == Global.CURRENT_CONFIG)
+					{
+						PacketCurrentConfig p = new PacketCurrentConfig(packet.getData());
+						game.setLetterPos(p.getCurrentLetter());
+						game.setLetterSet(p.getLetterSet());
+					}
+					if (packet.getId() == Global.COMMAND)
+					{
+						PacketCommand p = new PacketCommand(packet.getData());
+						int type = p.getType();
 
-					if (type == Global.LEFT)
-					{
-						game.goLeft();
-					}
-					if (type == Global.RIGHT)
-					{
-						game.goRight();
-					}
-					if (type == Global.SENTENCE_ENTER)
-					{
-						game.sentenceEnter();
-					}
-					if (type == Global.LETTER_ENTER)
-					{
-						game.letterEnter();
-					}
-					if (type == Global.CAPSLOCK)
-					{
-						game.capslock();
-					}
-					if (type == Global.SPACE)
-					{
-						game.space();
-					}
-					if (type == Global.BACKSPACE)
-					{
-						game.backspace();
+						if (type == Global.LEFT)
+						{
+							game.goLeft();
+						}
+						if (type == Global.RIGHT)
+						{
+							game.goRight();
+						}
+						if (type == Global.SENTENCE_ENTER)
+						{
+							game.sentenceEnter();
+						}
+						if (type == Global.LETTER_ENTER)
+						{
+							game.letterEnter();
+						}
+						if (type == Global.CAPSLOCK)
+						{
+							game.capslock();
+						}
+						if (type == Global.SPACE)
+						{
+							game.space();
+						}
+						if (type == Global.BACKSPACE)
+						{
+							game.backspace();
+						}
 					}
 				}
+				if (mode == Global.HISTORY)
+				{
+					if (packet.getId() == Global.NEW_SENTENCE)
+					{
+						PacketNewSentence p = new PacketNewSentence(packet.getData());
+						game.addToHistory(p.getSentence());
+					}
+				}
+				
 			}
 
 		});

@@ -21,7 +21,7 @@ public class Main implements Runnable{
     private Thread t;
     private boolean send = false;
     private int command;
-    private boolean running = false;
+    private volatile boolean running = false;
 
     public void start()
     {
@@ -75,5 +75,10 @@ public class Main implements Runnable{
    {
        this.command = command;
        send = true;
+   }
+
+   public void close()
+   {
+       running = false;
    }
 }

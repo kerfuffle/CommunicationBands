@@ -125,9 +125,16 @@ public class Game extends DavisGUI{
 		else
 		{
 			letterSet.setSet(i);
+			
+			caps = (i==LetterSet.UPPER);
 		}
 	}
 
+	public void addToHistory(String sentence)
+	{
+		history.addSentence(sentence);
+	}
+	
 	public void goLeft()
 	{
 		letterSet.shiftLeft();
@@ -141,7 +148,6 @@ public class Game extends DavisGUI{
 	public void sentenceEnter()
 	{
 		sentenceHistory.addSentence(wordSet.toString());
-		history.addSentence(wordSet.toString());
 		wordSet.clear();
 	}
 	public void letterEnter()

@@ -5,10 +5,8 @@ import net.kerfuffle.Utilities.Network.Packet;
 
 public class PacketNewSentence extends Packet {
 
-	public PacketNewSentence(String sentence)
+	public PacketNewSentence(CharSequence data)
 	{
-		super(null, Global.NEW_SENTENCE);
-		data = id + "," + sentence + ",";
+		super(data, Global.NEW_SENTENCE);
 	}
-	
 }

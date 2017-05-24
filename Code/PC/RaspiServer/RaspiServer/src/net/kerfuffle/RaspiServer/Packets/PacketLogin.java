@@ -9,11 +9,11 @@ public class PacketLogin extends Packet{
 	
 	private int mode = -1;
 	
-	public PacketLogin(String data, InetAddress ip, int port)
+	public PacketLogin(CharSequence data, InetAddress ip, int port)
 	{
 		super (data, Global.LOGIN, ip, port);
 		
-		String sp[] = data.split(",");
+		String sp[] = data.toString().split(",");
 		mode = Integer.parseInt(sp[1]);
 	}
 	

@@ -42,7 +42,7 @@ public class Main {
 		}
 		////////////
 		
-		game = new Game();
+		game = new Game(client);
 		
 		game.setCloseCode(new MyCode()
 		{
@@ -54,7 +54,7 @@ public class Main {
 		
 		client.setMyNetworkCode(new MyNetworkCode()
 		{
-			public void run(Packet packet)
+			public void run(Packet packet) throws IOException
 			{
 				if (packet.getId() == Global.DISCONNECT)
 				{

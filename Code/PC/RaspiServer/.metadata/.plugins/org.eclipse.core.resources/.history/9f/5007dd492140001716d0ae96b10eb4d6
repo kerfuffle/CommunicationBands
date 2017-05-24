@@ -1,0 +1,22 @@
+package net.kerfuffle.RaspiServer.Packets;
+
+import net.kerfuffle.RaspiServer.Global;
+import net.kerfuffle.Utilities.Network.Packet;
+
+public class PacketNewSentence extends Packet {
+
+	private String sentence;
+	
+	public PacketNewSentence(String sentence)
+	{
+		super(null, Global.NEW_SENTENCE);
+		data = id + "," + sentence + ",";
+	}
+	
+	public PacketNewSentence(CharSequence data)
+	{
+		super(data.toString(), Global.NEW_SENTENCE);
+		String sp[] = data.toString().split(",");
+		sentence = sp[1];
+	}
+}

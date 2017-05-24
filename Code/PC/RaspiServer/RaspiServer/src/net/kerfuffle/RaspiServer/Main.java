@@ -12,6 +12,7 @@ import net.kerfuffle.RaspiServer.Packets.PacketCommand;
 import net.kerfuffle.RaspiServer.Packets.PacketCurrentConfig;
 import net.kerfuffle.RaspiServer.Packets.PacketDisconnect;
 import net.kerfuffle.RaspiServer.Packets.PacketLogin;
+import net.kerfuffle.RaspiServer.Packets.PacketNewSentence;
 import net.kerfuffle.Utilities.Network.MyNetworkCode;
 import net.kerfuffle.Utilities.Network.Packet;
 import net.kerfuffle.Utilities.Network.Server;
@@ -84,9 +85,20 @@ public class Main {
 						}
 					}
 				}
+				if (packet.getId() == Global.NEW_SENTENCE)
+				{
+					PacketNewSentence p = new PacketNewSentence(packet.getData());
+					for (GroupUser gu : groupUsers)
+					{
+						if (gu.getMode() == Global.HISTORY)
+						{
+							server.sendToUser(p, gu.getIp(), gu.getPort());
+						}
+					}
+				}
 				if (packet.getId() == Global.DISCONNECT)
 				{
-					PacketDisconnect p = new PacketDisconnect(packet.getData(), packet.getIp(), packet.getPort());
+					PacketDisconnect p = new PacketDisconnect(packet.getData());
 					server.removeUser(packet.getIp(), packet.getPort());
 				}
 			}

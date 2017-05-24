@@ -13,10 +13,10 @@ public class PacketCommand extends Packet{
 		data = (id + "," + type + ",");
 	}
 
-	public PacketCommand (String data)
+	public PacketCommand (CharSequence data)
 	{
 		super(data, Global.COMMAND);
-		String sp[] = data.split(",");
+		String sp[] = data.toString().split(",");
 		command = Integer.parseInt(sp[1]);
 	}
 	
