@@ -28,14 +28,17 @@ public class Main {
 	private Server server;
 	private FingerListener fingerListener;
 	
-	private InetAddress patientIp;
-	private int patientPort;
+	private InetAddress patientIp = null;
+	private int patientPort = -1;
 
 	public void run() throws SocketException, UnknownHostException
 	{
 		int port = Integer.parseInt(JOptionPane.showInputDialog("Port to host on."));
 		
 		server = new Server("RaspiServer", port);
+		
+		fingerListener = new FingerListener(server, patientIp, patientPort, groupUsers);
+		fingerListener.start();
 
 		server.setMyNetworkCode(new MyNetworkCode()
 		{
@@ -51,6 +54,9 @@ public class Main {
 					groupUsers.add(gu);
 					server.addUser(u);
 					
+					System.out.println("Visitor at " + packet.getIp().toString() + " has logged in.");
+					
+					//TODO Make this for FingerListener, and make sure to create sync for wordset
 					if (efs != null)
 					{
 						PacketCurrentConfig pcc = new PacketCurrentConfig(efs.currentLetter(), efs.getLetterSet());
@@ -61,13 +67,12 @@ public class Main {
 				{
 					patientIp = packet.getIp();
 					patientPort = packet.getPort();
+					fingerListener.setPatient(patientIp, patientPort);
 					if (efs != null)
 					{
 						efs.setPatient(patientIp, patientPort);
 					}
-					
-					//fingerSimulator = new FingerSimulator(server, patientIp, patientPort, groupUsers);
-					//fingerSimulator.start();
+					System.out.println("Patient has logged in.");
 				}
 				if (packet.getId() == Global.EXTERNAL_SIMULATOR_LOGIN)
 				{
@@ -105,9 +110,6 @@ public class Main {
 		});
 		
 		server.start();
-		
-		//fingerListener = new FingerListener(server, patientIp, patientPort);
-		//fingerListener.start();
 	}
 
 

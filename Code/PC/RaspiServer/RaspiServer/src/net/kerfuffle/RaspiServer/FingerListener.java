@@ -18,19 +18,15 @@ import java.util.ArrayList;
 public class FingerListener implements Runnable{
 
 	private Thread t;
-	private boolean running = false;
+	private volatile boolean running = false;
 
 	private Server server;
 	private InetAddress patientIp;
-	private int patientPort;
+	private int patientPort = -1;
 
 	private Finger finger[] = new Finger[10];
-	private final Pin pin[] = {GPIO_00, GPIO_01, GPIO_02, GPIO_03, GPIO_04, GPIO_05, GPIO_06, GPIO_07, GPIO_08, GPIO_09};
-	private final int fingerType[] = {LEFT_PINKY, LEFT_RING, LEFT_MIDDLE, LEFT_POINTER, LEFT_THUMB, RIGHT_THUMB, RIGHT_POINTER, RIGHT_RING, RIGHT_PINKY};
-
-	private char currentLetter;
-	private StringBuilder currentSentence = new StringBuilder();
-	private ArrayList<String> history = new ArrayList<String>();
+	private final Pin pin[] = {GPIO_00, GPIO_01, GPIO_02, GPIO_26, GPIO_04, GPIO_05, GPIO_06, GPIO_07, GPIO_25, GPIO_03};
+	private final int fingerType[] = {LEFT_PINKY, LEFT_RING, LEFT_MIDDLE, LEFT_POINTER, LEFT_THUMB, RIGHT_THUMB, RIGHT_POINTER, RIGHT_MIDDLE, RIGHT_RING, RIGHT_PINKY};
 	
 	private ArrayList<GroupUser> groupUsers;
 	
@@ -47,6 +43,12 @@ public class FingerListener implements Runnable{
 		}
 	}
 
+	public void setPatient(InetAddress ip, int port)
+	{
+		patientIp = ip;
+		patientPort = port;
+	}
+	
 	public void start()
 	{
 		running = true;
@@ -61,6 +63,7 @@ public class FingerListener implements Runnable{
 		{
 			for (Finger f : finger)
 			{
+				f.update();
 				if (f.isTriggered())
 				{
 					triggered.add(f);
@@ -75,88 +78,26 @@ public class FingerListener implements Runnable{
 				if (f.getFingerType() == LEFT_POINTER)	
 				{
 					p = new PacketCommand(LEFT);
-					currentLetter = incrementChar(currentLetter);
-					
-//					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-//					try
-//					{
-//						for (GroupUser gu : groupUsers)
-//						{
-//							if (gu.getMode() == )
-//							{
-//								server.sendToUser(pcl, gu.getIp(), gu.getPort());
-//							}
-//						}
-//					}
-//					catch (IOException e)
-//					{
-//						e.printStackTrace();	
-//					}
 				}
 				if (f.getFingerType() == RIGHT_POINTER)
 				{
 					p = new PacketCommand(RIGHT);
-					currentLetter = decrementChar(currentLetter);
-					
-//					PacketCurrentLetter pcl = new PacketCurrentLetter(currentLetter);
-//					try
-//					{
-//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-//					}
-//					catch (IOException e)
-//					{
-//						e.printStackTrace();	
-//					}
 				}
 				if (f.getFingerType() == LEFT_THUMB)
 				{
 					p = new PacketCommand(BACKSPACE);
-					currentSentence.deleteCharAt(currentSentence.length()-1);
-					
-//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-//					try
-//					{
-//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-//					}
-//					catch (IOException e)
-//					{
-//						e.printStackTrace();	
-//					}
 				}
 				if (f.getFingerType() == RIGHT_THUMB)
 				{
 					p = new PacketCommand(LETTER_ENTER);
-					currentSentence.append(currentLetter);
-					
-//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-//					try
-//					{
-//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-//					}
-//					catch (IOException e)
-//					{
-//						e.printStackTrace();	
-//					}
 				}
 				if (f.getFingerType() == LEFT_PINKY)
 				{
 					p = new PacketCommand(CAPSLOCK);
-					currentLetter = Character.toUpperCase(currentLetter);
 				}
 				if (f.getFingerType() == RIGHT_PINKY)
 				{
 					p = new PacketCommand(SPACE);
-					currentSentence.append(' ');
-					
-//					PacketCurrentSentence pcl = new PacketCurrentSentence(currentSentence.toString());
-//					try
-//					{
-//						server.sendToAllUsersExcept(pcl, patientIp, patientPort);
-//					}
-//					catch (IOException e)
-//					{
-//						e.printStackTrace();	
-//					}
 				}
 			}
 			else
@@ -164,43 +105,29 @@ public class FingerListener implements Runnable{
 				if (hasSentenceEnterCombo(triggered))
 				{
 					p = new PacketCommand(SENTENCE_ENTER);
-					history.add(currentSentence.toString());
-					
-					PacketNewSentence pcl = new PacketNewSentence(currentSentence.toString());
-					try
-					{
-						for (GroupUser gu : groupUsers)
-						{
-							if (gu.getMode() == Global.HISTORY)
-							{
-								server.sendToUser(pcl, gu.getIp(), gu.getPort());
-							}
-						}
-					}
-					catch (IOException e)
-					{
-						e.printStackTrace();	
-					}
-					
-					currentSentence.delete(0, currentSentence.length()-1);
 				}
 			}
 
-
-			try 
+			if (triggered.size() != 0)
 			{
-				for (GroupUser gu : groupUsers)
+				if (patientIp != null && patientPort != -1)
 				{
-					if (gu.getMode() == Global.MIMIC)
+					try 
 					{
-						server.sendToUser(p, gu.getIp(), gu.getPort());
+						for (GroupUser gu : groupUsers)
+						{
+							if (gu.getMode() == Global.MIMIC)
+							{
+								server.sendToUser(p, gu.getIp(), gu.getPort());
+							}
+						}
+						server.sendToUser(p, patientIp, patientPort);
+					} 
+					catch (IOException e) 
+					{
+						e.printStackTrace();
 					}
 				}
-				server.sendToUser(p, patientIp, patientPort);
-			} 
-			catch (IOException e) 
-			{
-				e.printStackTrace();
 			}
 
 			triggered.clear();
@@ -212,31 +139,6 @@ public class FingerListener implements Runnable{
 	
 	
 	
-	
-	private char incrementChar(char c)
-	{
-		if (c == 'Z')
-		{
-			return 'A';
-		}
-		if (c == 'z')
-		{
-			return 'a';
-		}
-		return c++;
-	}
-	private char decrementChar(char c)
-	{
-		if (c == 'A')
-		{
-			return 'Z';
-		}
-		if (c == 'a')
-		{
-			return 'z';
-		}
-		return c--;
-	}
 	
 	private boolean hasFingerType(ArrayList<Finger>fs, int type)
 	{

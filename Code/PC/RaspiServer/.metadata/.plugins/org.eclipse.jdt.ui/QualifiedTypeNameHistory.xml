@@ -24,4 +24,5 @@
 <fullyQualifiedTypeName name="net.kerfuffle.RaspiServer.Packets.PacketCurrentConfig"/>
 <fullyQualifiedTypeName name="net.kerfuffle.Utilities.Network.MyNetworkCode"/>
 <fullyQualifiedTypeName name="net.kerfuffle.RaspiServer.Packets.PacketNewSentence"/>
+<fullyQualifiedTypeName name="net.kerfuffle.Utilities.Timer"/>
 </qualifiedTypeNameHistroy>

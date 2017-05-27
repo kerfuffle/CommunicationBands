@@ -99,7 +99,7 @@ public class ExternalFingerSimulator {
 			{
 				for (GroupUser gu : groupUsers)
 				{
-					if (gu.getMode() == Global.MIMIC || gu.getMode() == Global.HISTORY)
+					if (gu.getMode() == Global.MIMIC)
 					{
 						server.sendToUser(p, gu.getIp(), gu.getPort());
 					}
