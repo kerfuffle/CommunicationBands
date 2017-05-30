@@ -18,7 +18,7 @@ public class Finger {
 	private int fingerType = -1;
 	private boolean triggered = false;
 	
-	private int count = 0;
+	private long count = 0;
 	private final int TIMEOUT_TICKS = 20000;
 	
 	public Finger (Pin pin, int fingerType)

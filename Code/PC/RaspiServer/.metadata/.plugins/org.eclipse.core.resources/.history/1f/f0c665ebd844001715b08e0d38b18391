@@ -7,7 +7,6 @@ public class Timer implements Runnable{
 	private volatile boolean running = false;
 	private long startTime, elapsedTime, max = -1;
 	
-	@Deprecated
 	public Timer(String name)
 	{
 		this.name = name;
